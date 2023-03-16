@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmls:th="http://www.thymeleaf.com">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <form th:object=${persona} th:action="@{/registro}" method="POST">
+
+
+            <h1>Login</h1>
+            <p>Username</p>
+            <div><input th:field="*{nombre}" type="text"></div>
+            <p>Password</p>
+            <div><input th:field="*{apellido}" type="text"></div>
+            <p>Telefono</p>
+            <div><input th:field="*{telefono}" type="text"></div>
+            <p>Email</p>
+            <div><input th:field="*{email}" type="email"></div>
+            <p>Password</p>
+            <div><input th:field="*{password}" type="password"></div>
+
+            <input type="submit" value="Login">
+        </form>
+
+    </body>
+</html>
