@@ -1,0 +1,11 @@
+{
+    "elements": {},
+    "attributes": {
+        "xmls:th": {
+            "context": "html"
+        },
+        "th:text": {
+            "context": "p"
+        }
+    }
+}
