@@ -25,18 +25,21 @@
         <canvas id="background"></canvas>
         <div class="col-md-6 mx-auto">
             <form class="form-signin" th:action="@{/registro}" th:method="POST" th:object=${persona}>
-                <img class="mb-4 mt-5 mb-3" src="Cleverp.png" alt="" width="500" height="500">
-                <h1 class="h3 mb-3 font-weight-normal">Iniciar Sessió</h1>
-                <label for="inputEmail" class="sr-only">Email</label>
-                <input type="email"  th:field="*{email}"id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input th:field="*{password}" type="password" id="inputPassword" class="form-control mt-5" placeholder="Password" required="">
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Recorda Sessió
-                    </label>
+                <img class="mb-4 mt-5 mb-3" style="" src="Cleverp.png" alt="" width="500" height="500">
+                <div class="d-flex flex-column flex-shrink-0 p-3" style="backdrop-filter: blur(2px);">
+                    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sessió</h1>
+                    <label for="inputEmail" class="sr-only">Email</label>
+                    <input type="email"  th:field="*{email}"id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input th:field="*{password}" type="password" id="inputPassword" class="form-control mt-5" placeholder="Password" required="">
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Recorda Sessió
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" style="background-color: #447c58 !important;" type="submit">Log In</button>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+
                 <p class="mt-5 mb-3 text-muted">© 2022-2023</p>
             </form>
         </div>
