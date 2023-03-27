@@ -31,17 +31,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class empleatController {
 
-    @GetMapping("/login")
-    public String login(Model m, @AuthenticationPrincipal User username) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String login(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "login";
+//    }
     
-    @GetMapping("/bootstrap.min.css")
-    public String loginError(Model m, @AuthenticationPrincipal User username) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "Base";
-    }
+//    @GetMapping("/bootstrap.min.css")
+//    public String loginError(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "Base";
+//    }
     
     
     @GetMapping("/")
@@ -49,5 +49,12 @@ public class empleatController {
         //m.addAttribute("Empleat", new Empleat());
         return "Base";
     }
+    
+    @PostMapping("/base")
+    public String base2(Model m, @AuthenticationPrincipal User username) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "Base";
+    }
+
 
 }
