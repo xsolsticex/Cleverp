@@ -54,13 +54,10 @@ public class ConfiguracioAutenticacio {
    
     @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        
-        String[] resourcesStatic = {"/Cleverp.png/**", "/background.js/**", "/signin.css/**", "/styles.css/**"};//Arxius utilitzats per el login.
-        
+
         return http.authorizeHttpRequests((requests) -> requests
         	 //En el nostre cas el mètode hasAnyAuthority fa el mateix que HasAnyRoles, o hasAuthority el mateix que hasRol, però en aquesta nova versió per autoritzar els usuaris, els mètodes
         	 //dels rols, normalment donen problemes, els Authority, no.
-                .requestMatchers(resourcesStatic).permitAll()
                 .requestMatchers("/Base/**").hasAnyAuthority("administrador", "arbitre", "venedor") //URL iniciGossos on pot accedir el rol de veterinari o pacient
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
                 )
