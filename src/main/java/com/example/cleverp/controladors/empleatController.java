@@ -29,20 +29,32 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Carlos
  */
 @Controller
-public class sprinbotController {
+public class empleatController {
 
-    @GetMapping("/login")
-    public String login(Model m, @AuthenticationPrincipal User username) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "login";
-
-    }
+//    @GetMapping("/login")
+//    public String login(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "login";
+//    }
     
-    @GetMapping("/base")
+//    @GetMapping("/bootstrap.min.css")
+//    public String loginError(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "Base";
+//    }
+    
+    
+    @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
         //m.addAttribute("Empleat", new Empleat());
         return "Base";
-
     }
+    
+    @PostMapping("/base")
+    public String base2(Model m, @AuthenticationPrincipal User username) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "Base";
+    }
+
 
 }

@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
     <head>
-        <title>Login</title>
-        <meta charset="UTF-8"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <title>Signin Template for Bootstrap</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+        <!-- Bootstrap core CSS -->
+        
+
+        <!-- Custom styles for this template -->
+        <link href="signin.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <script src="background.js"></script>
     </head>
-    <body>
-        <h1>Login aaaa</h1>
+    <body class="text-center m-0 p-0">
+        <canvas id="background"></canvas>
+        <div class="col-md-6 mx-auto">
+            <form class="form-signin" method="POST" th:action="@{/login}">
+                <img class="mb-4 mt-5 mb-3" style="" src="Cleverp.png" alt="" width="500" height="500">
+                <div class="d-flex flex-column flex-shrink-0 p-3" style="backdrop-filter: blur(2px);">
+                    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sessió</h1>
+                    <p>
+                        <!--El name i id de el nom d'usuari ha de ser username perquè Spring Security el reconegui com a tal-->
+                        <label for="username" class="sr-only">Usuari:</label>
+                        <input type="text" name="username" id="username"/>
+                    </p>
 
-        <form method="POST" th:action="@{/login}">
-            <p>
-                <!--El name i id de el nom d'usuari ha de ser username perquè Spring Security el reconegui com a tal-->
-                <label for="username">Usuari:</label>
-                <input type="text" name="username" id="username"/>
-            <p/>
-
-            <p>
-                <!--El name i id de la contrasenya ha de ser password perquè Spring Security el reconegui com a tal-->
-                <label for="password">Contrasenya:</label>
-                <input type="password" name="password" id="password"/>
-            <p/>
-
-            <input type="submit" value="Login"/>
-        </form>
-
+                    <p>
+                        <!--El name i id de la contrasenya ha de ser password perquè Spring Security el reconegui com a tal-->
+                        <label for="password" class="sr-only">Contrasenya:</label>
+                        <input type="password" name="password" id="password"/>
+                    </p>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Recorda Sessió
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" style="background-color: #447c58 !important;" type="submit" value="Login">Log In</button>
+                </div>
+                <p class="mt-5 mb-3 text-muted">© 2022-2023</p>
+            </form>
+        </div>
     </body>
 </html>
