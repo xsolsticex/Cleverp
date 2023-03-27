@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
     c.width = window.innerWidth;
 
     //chinese characters - taken from the unicode charset
-    var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+    var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
     //converting the string into an array of single characters
     matrix = matrix.split("");
 

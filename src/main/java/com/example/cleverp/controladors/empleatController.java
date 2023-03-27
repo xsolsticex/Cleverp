@@ -44,11 +44,11 @@ public class empleatController {
 //    }
     
     
-    @GetMapping("/")
-    public String base(Model m, @AuthenticationPrincipal User username) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "Base";
-    }
+//    @GetMapping("/")
+//    public String base(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "Base";
+//    }
     
     @PostMapping("/base")
     public String base2(Model m, @AuthenticationPrincipal User username) {
