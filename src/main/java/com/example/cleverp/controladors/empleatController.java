@@ -37,24 +37,22 @@ public class empleatController {
 //        return "login";
 //    }
     
-//    @GetMapping("/bootstrap.min.css")
-//    public String loginError(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "Base";
-//    }
+    @GetMapping("/")
+    public String base(Model m, @AuthenticationPrincipal User username) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "Base";
+    }
     
-    
-//    @GetMapping("/")
-//    public String base(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "Base";
-//    }
-    
-    @PostMapping("/base")
+    @GetMapping("/base")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         //m.addAttribute("Empleat", new Empleat());
         return "Base";
     }
-
+    
+    @GetMapping("/hola")
+    public String hola(Model m) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "holaAdmin";
+    }
 
 }

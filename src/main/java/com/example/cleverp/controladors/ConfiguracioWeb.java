@@ -4,11 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- *
- * @author fta
- */
-
 /*
 *Classe on implementarem diferents mètodes de la interface WebMvcConfigurer per
 *configurar el fluxe del MVC de la nostra aplicació

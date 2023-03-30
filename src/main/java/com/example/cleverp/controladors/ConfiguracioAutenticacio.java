@@ -61,7 +61,7 @@ public class ConfiguracioAutenticacio {
         	 //En el nostre cas el mètode hasAnyAuthority fa el mateix que HasAnyRoles, o hasAuthority el mateix que hasRol, però en aquesta nova versió per autoritzar els usuaris, els mètodes
         	 //dels rols, normalment donen problemes, els Authority, no.
                 .requestMatchers(resourcesStatic).permitAll()
-                .requestMatchers("/Base/**").hasAnyAuthority("administrador", "arbitre", "venedor") //URL iniciGossos on pot accedir el rol de veterinari o pacient
+                .requestMatchers("/base/**").hasAnyAuthority("administrador", "arbitre", "venedor") //URL iniciGossos on pot accedir el rol de veterinari o pacient
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
                 )
                 .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
@@ -69,7 +69,7 @@ public class ConfiguracioAutenticacio {
                 .permitAll() //Permet acceddir a tothom
                 )
                 .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
-                .accessDeniedPage("/errors/error403"))
+                .accessDeniedPage("/errors/error403.html"))
                 .build();
 
     }
