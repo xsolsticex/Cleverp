@@ -54,5 +54,11 @@ public class empleatController {
         //m.addAttribute("Empleat", new Empleat());
         return "holaAdmin";
     }
+    
+    @GetMapping("/holaVenedor")
+    public String holaVenedor(Model m) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "holaVenedor";
+    }
 
 }
