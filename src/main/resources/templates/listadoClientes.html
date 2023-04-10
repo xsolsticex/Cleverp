@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmls:th="http://www.thymeleaft.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>C.A.T ClevERP</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="d-flex">
+                <div class="logo mr-auto">
+                    <img src="logo.png" alt="Logo">
+                    <div class="mirilla">
+                        <img src="mirilla.png" alt="Rotating Image" style="flex:
+                             0 0 auto;">
+
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white
+                     flex-grow-1">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">ClevERP</a>
+                        <button class="navbar-toggler" type="button"
+                                data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="d-flex justify-content-end">
+
+                </div>
+            </div>
+        </header>
+    <div class="sidebar">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a th:href="@{/listadoClientes}" class="nav-link active mb-auto" aria-current="page">Clients</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/listadoEmpleados}" class="nav-link text-white">Empleats</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
+
+        </li>
+      </ul>
+    </div>
+        <div class="main-content">
+            <main class="flex-grow-content-1">
+                <p>        <table class="table table-dark" border="2">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Cognom</th>
+                        <th>Cognom 2</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th>Data Naixement</th>
+                        <th>Data Registre</th>
+                        <th>Direccio</th>
+                        <th colspan="2">Opcions</th>
+
+                    </tr>
+
+                    <tr th:each="cliente:${clientes}">
+                        <td th:text="${cliente.id}"/>
+                        <td th:text="${cliente.nom}"/>
+                        <td th:text="${cliente.cognom1}"/>
+                        <td th:text="${cliente.cognom2}"/>
+                        <td th:text="${cliente.dni}"/>
+                        <td th:text="${cliente.data_naixement}"/>
+                        <td th:text="${cliente.data_registre}"/>
+                        <td th:text="${cliente.direccio}"/>
+                        <td><a th:href="@{/elimina/cliente/}+${cliente.id}" th:text="Elimina"/></td>
+                        <td><a th:href="@{/editar/cliente/}+${cliente.id}" th:text="Edita"/></td>
+                </table></p>
+                <footer id="footer"class="bg-light text-center text-lg-start">
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                        ©2023 
+                        <a class="text-dark" href="https://mdbootstrap.com/">ClevERP</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+            </main>
+
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    </body>
+</html>

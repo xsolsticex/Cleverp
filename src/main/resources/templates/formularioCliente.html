@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmls:th="http://www.thymeleaft.org">
+    <head>
+        <title>Editar usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form th:action="@{/guardarCliente}" method="post" th:object="${cliente}">
+            <label>Nom</label><br/>
+            <input type="text" th:field="*{nom}"><br/>
+            <label>Cognom 1</label><br/>
+            <input type="text" th:field="*{cognom1}"/><br/>
+            <label>Cognom 2</label><br/>
+            <input type="text" th:field="*{cognom2}"/><br/>
+            <label>DNI</label><br/>
+            <input type="text" id="phone" name="birth" th:field="*{dni}"/><br/>
+            <label>Email</label><br/>
+            <input type="text" id="phone" name="birth" th:field="*{email}"/><br/>
+            <label>Data Naixement</label><br/>
+            <input type="date" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
+            <label>Data Registre</label><br/>
+            <input type="date" id="phone" name="birth" th:field="*{data_registre}"/><br/>
+            <label>Direccio</label><br/>
+            <input type="text" id="phone" name="birth" th:field="*{direccio}"/><br/>
+            <input type="submit" value="Confirma">
+        </form>
+    </body>
+</html>
