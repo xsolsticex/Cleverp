@@ -22,7 +22,7 @@
     <body class="text-center m-0 p-0">
         <canvas id="background"></canvas>
         <div class="col-md-6 mx-auto">
-            <form class="form-signin" method="POST" th:action="@{/login}">
+            <form class="form-signin" method="POST" th:action="@{/login}" th:object="${empleat}">
                 <img class="mb-4 mt-5 mb-3" style="" src="Cleverp.png" alt="" width="500" height="500">
                 <div class="d-flex flex-column flex-shrink-0 p-3" style="backdrop-filter: blur(2px);">
                     <h1 class="h3 mb-3 font-weight-normal">Iniciar Sessió</h1>

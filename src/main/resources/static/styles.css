@@ -40,6 +40,98 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 col-md-6 mx-auto{
-   position: absolute;
-   z-index: 1;
+    position: absolute;
+    z-index: 1;
+}
+
+header {
+    background-color: white;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+nav{
+    height: 80px;
+
+}
+.logo {
+    border: 2px solid #343A40;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 171px;
+    width: 250px;
+    z-index: 2;
+}
+.logo img {
+    padding-left: 5px;
+    height: 100%;
+    width: 70%;
+    margin-right: 2px;
+    z-index: 1;
+}
+.mirilla {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+.mirilla img {
+
+    height: 100%;
+    width: 100%;
+    animation: rotate 7s linear infinite;
+    position: relative;
+    z-index: 1;
+}
+.sidebar {
+    position: fixed;
+    top: 170px;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #343A40;
+    border-right: 1px solid #e9ecef;
+    z-index: 1;
+    padding-top: 20px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+.sidebar li:last-child {
+    border-bottom: none;
+}
+.main-content {
+    margin-top: 150px;
+    margin-left: 250px;
+    padding: 20px;
+
+}
+
+
+footer{
+    width: 100% !important;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
