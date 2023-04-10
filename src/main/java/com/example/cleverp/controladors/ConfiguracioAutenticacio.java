@@ -29,7 +29,7 @@ public class ConfiguracioAutenticacio {
     private UserDetailsService userDetailsService; //Objecte per recuperar l'usuari
 
     /*AUTENTICACIÓ*/
- /*Injectem mitjançant @Autowired, els mètodes de la classe AuthenticationManagerBuilder. Mitjançant
+    /*Injectem mitjançant @Autowired, els mètodes de la classe AuthenticationManagerBuilder. Mitjançant
      *aquesta classe cridarem al mètode userDetailsService de la classe AuthenticationManagerBuilder què és el mètode que
      *realitzarà l'autenticació. Per parm̀etre el sistema li passa l'usuari introduit en el formulari d'autenticació.
      *Aquest usuari ens el retorna el mètode loadUserByUsername implementat en UsuariService.
@@ -70,8 +70,8 @@ public class ConfiguracioAutenticacio {
                 .loginPage("/login")  //Pàgina on es troba el formulari per fer login personalitzat
                 .permitAll() //Permet acceddir a tothom
                 )
-                .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 404, accés denegat, mostrem el nostre missatge
-                .accessDeniedPage("/errors/error403"))
+                .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
+                .accessDeniedPage("/error403"))
                 .build();
 
     }
