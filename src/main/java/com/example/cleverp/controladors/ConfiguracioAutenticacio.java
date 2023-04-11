@@ -73,6 +73,9 @@ public class ConfiguracioAutenticacio {
                 )
                 .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
                 .accessDeniedPage("/error403"))
+                .logout((logout) -> logout  //Agrega este bloque de código
+                .permitAll() //Permitir a todos
+                )
                 .build();
 
     }

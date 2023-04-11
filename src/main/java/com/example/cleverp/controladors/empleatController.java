@@ -25,13 +25,14 @@ public class empleatController {
     private ClienteService cliente;
     @Autowired
     private EmpleatService empleado;
-
-
+ 
+    
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
+    
 
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
