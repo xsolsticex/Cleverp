@@ -62,8 +62,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <li class="nav-item">
           <a th:href="@{/listadoClientes}" class="nav-link text-white" aria-current="page">Clients</a>
         </li>
-        <li class="nav-item">
-          <a th:href="@{/listadoEmpleados}" class="nav-link text-white">Empleats</a>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+            <a th:href="@{/listadoEmpleados}" sec:authorize="hasAnyAuthority('administrador')" class="nav-link text-white">Empleats</a>
         </li>
         <li class="nav-item">
           <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
@@ -72,7 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
           <a th:href="@{/configuracio}" class="nav-link active mb-auto">Configuració</a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
+          <a th:href="@{/plantilla}" class="nav-link text-white">Plantilla</a>
 
         </li>
       </ul>
