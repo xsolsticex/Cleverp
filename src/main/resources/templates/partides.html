@@ -57,22 +57,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </header>
-        <div class="sidebar">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a th:href="@{/listadoClientes}" class="nav-link text-white" aria-current="page">Clients</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/listadoEmpleados}" class="nav-link text-white">Empleats</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/partides}" class="nav-link active mb-auto">Partides</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
+    <div class="sidebar">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a th:href="@{/listadoClientes}" class="nav-link text-white" aria-current="page">Clients</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+            <a th:href="@{/listadoEmpleados}" class="nav-link text-white">Empleats</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/partides}" class="nav-link active mb-auto">Partides</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/plantilla}" class="nav-link text-white">Plantilla</a>
 
                 </li>
             </ul>

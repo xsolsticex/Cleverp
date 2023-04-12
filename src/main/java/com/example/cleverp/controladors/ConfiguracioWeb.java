@@ -27,5 +27,6 @@ public class ConfiguracioWeb implements WebMvcConfigurer {
         registre.addViewController("/error403").setViewName("error403");
         registre.addViewController("/error404").setViewName("error404");
     }
+    
 
 }

@@ -6,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmls:th="http://www.thymeleaft.org">
 <head>
     <meta charset="UTF-8">
-    <title>C.A.T ClevERP</title><!-- Bootstrap CSS -->
+    <title>Cleverp - Empleats</title><!-- Bootstrap CSS -->
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link href="styles.css" rel="stylesheet">
@@ -26,18 +26,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <a class="navbar-brand" href="#">ClevERP</a>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
+                  Bienvenido, <span th:text="${username}"></span>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
-                </li>
+                    <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
+                        <button class="btn btn-link" type="submit" value="Logout">Tancar sessió</button>
+                    </form>
               </ul>
             </div>
           </div>
@@ -50,8 +44,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <li class="nav-item">
           <a th:href="@{/listadoClientes}" class="nav-link text-white" aria-current="page">Clients</a>
         </li>
-        <li class="nav-item">
-          <a th:href="@{/listadoEmpleados}" class="nav-link active mb-auto">Empleats</a>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+            <a th:href="@{/listadoEmpleados}" sec:authorize="hasAnyAuthority('administrador')" class="nav-link active mb-auto">Empleats</a>
         </li>
         <li class="nav-item">
           <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
@@ -60,7 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
           <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
         </li>
         <li class="nav-item">
-          <a th:href="@{/}" class="nav-link text-white">Sortir</a>
+          <a th:href="@{/plantilla}" class="nav-link text-white">Plantilla</a>
 
         </li>
       </ul>
@@ -100,7 +94,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0,
           0.2);">
           ©2023
-          <a class="text-dark" href="https://mdbootstrap.com/">ClevERP</a>
+          <a class="text-dark" href="">ClevERP</a>
         </div>
         <!-- Copyright -->
       </footer>

@@ -1,9 +1,7 @@
 package com.example.cleverp.controladors;
 
 /**
- *Exercici:
- *Descripció:
- * @author brian
+Controlador d'errors
  */
 import jakarta.servlet.http.HttpServletRequest;
 import java.nio.file.AccessDeniedException;

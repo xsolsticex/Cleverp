@@ -27,17 +27,13 @@ public class empleatController {
     private EmpleatService empleado;
     @Autowired
     private PartidesService partides;
-//    @GetMapping("/bootstrap.min.css")
-//    public String loginError(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "Base";
-//    }
 
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
+    
 
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
@@ -45,10 +41,7 @@ public class empleatController {
         return "listadoEmpleados";
     }
 
-    /*@GetMapping("/")
-    public String login() {
-        return "login";
-    }*/
+   
     @GetMapping("/formularioEmpleat")
     public String formularioEmpleat() {
         return "formularioEmpleado";
