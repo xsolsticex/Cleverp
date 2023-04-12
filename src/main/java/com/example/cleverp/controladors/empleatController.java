@@ -14,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.validation.Valid;
+import org.springframework.validation.Errors;
+
 /**
  *
  * @author Carlos
@@ -34,7 +37,7 @@ public class empleatController {
         return "listadoEmpleados";
     }
     
-
+    
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
@@ -106,11 +109,18 @@ public class empleatController {
     }
 
     @PostMapping("/guardarEmpleado")
-    public String guardaEmpleat(Empleat empl) {
+    public String guardaEmpleat(@Valid Empleat empl, Errors errors) {
+        
+        if(errors.hasErrors()){ //Si s'han produït errors...
+             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+        }
+        
         empleado.addEmpleat(empl);
+        
         return "redirect:/listadoEmpleados";
     }
-
+    
+    
     @GetMapping("/elimina/cliente/{id}")
     public String eliminarClientes(Cliente client) {
         this.cliente.eliminarCliente(client);
