@@ -90,22 +90,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <th>Producte sortejat</th>
                     <th colspan="2">Opcions</th>
                 </tr>
-                <tr th:each="partides:${partida}">
-                    <td th:text="${partida.idPartida}"></td>
-                    <td th:text="${partida.dataPartida}"></td>
-                    <td th:text="${partida.participants}"></td>
-                    <td th:text="${partida.equipA}"></td>
-                    <td th:text="${partida.equipB}"></td>
-                    <td th:text="${partida.guanyadorSorteig}"></td>
-                    <td th:text="${partida.producteSorteig}"></td>
-                    <td>
+                <tr th:each="partida:${partides}">
+                    <td th:text="${partida.id}"></td>
+                    <td th:text="${partida.data_partida}"></td>
+                    <td th:text="${partida.aforament}"></td>
+                    <td th:text="${partida.EquipA_id}"></td>
+                    <td th:text="${partida.EquipB_id}"></td>
+                    <td th:text="${partida.guanyador_sorteig}"></td>
+                    <td th:text="${partida.producte_sorteig}"></td>
+                    <!--<td>
                         <a th:href="@{/elimina/empleado/}+${empleado.idUsuari}"
                            th:text="Elimina"></a>
                     </td>
                     <td>
                         <a th:href="@{/editar/empleado/}+${empleado.idUsuari}"
                            th:text="Edita"></a>
-                    </td>
+                    </td> -->
                 </tr>
             </table>
             <footer id="footer" class="bg-light text-center text-lg-start">

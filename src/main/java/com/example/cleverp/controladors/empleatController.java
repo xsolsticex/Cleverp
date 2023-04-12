@@ -25,6 +25,8 @@ public class empleatController {
     private ClienteService cliente;
     @Autowired
     private EmpleatService empleado;
+    @Autowired
+    private PartidesService partides;
 //    @GetMapping("/bootstrap.min.css")
 //    public String loginError(Model m, @AuthenticationPrincipal User username) {
 //        //m.addAttribute("Empleat", new Empleat());
@@ -76,7 +78,8 @@ public class empleatController {
     }
 
     @GetMapping("/partides")
-    public String partides() {
+    public String partides(Model model) {
+        model.addAttribute("partides", partides.listarPartides());
         return "partides";
     }
 

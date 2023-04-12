@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.cleverp.controladors;
 
 import com.example.cleverp.Interface.PartidesInterface;
@@ -20,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Slf4j
 public class PartidesService implements PartidesInterface {
-    
+
     @Autowired
     private PartidesDAO partides;
 

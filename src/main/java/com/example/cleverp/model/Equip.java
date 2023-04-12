@@ -26,7 +26,7 @@ public class Equip {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Integer id;
     @Column(name = "nom")
     private String nom;
     @Column(name = "data_registre")
