@@ -4,6 +4,7 @@
  */
 package com.example.cleverp.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,8 +36,10 @@ public class Partides {
     private Date data_partida;
     @Column(name = "aforament")
     private Integer aforament;
+    @Nullable
     @Column(name = "EquipA_id")
     private Integer EquipA_id;
+    @Nullable
     @Column(name = "EquipB_id")
     private Integer EquipB_id;
     @Column(name = "guanyador_sorteig")
@@ -45,9 +48,11 @@ public class Partides {
     private String producte_sorteig;
     
     @OneToMany
+    @Nullable
     @JoinColumn(name = "EquipA_id")
     private List<Equip> EquipsA;
     @OneToMany
+    @Nullable
     @JoinColumn(name = "EquipB_id")
     private List<Equip> EquipsB;
 }

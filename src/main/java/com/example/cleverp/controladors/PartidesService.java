@@ -37,7 +37,7 @@ public class PartidesService implements PartidesInterface {
     public void eliminarPartida(Partides partides) {
         this.partides.delete(partides);
     }
-
+    
     @Override
     @Transactional
     public Partides buscarPartida(Partides partides) {

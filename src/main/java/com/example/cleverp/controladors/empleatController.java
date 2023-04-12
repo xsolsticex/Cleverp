@@ -6,6 +6,7 @@ package com.example.cleverp.controladors;
 
 import com.example.cleverp.model.Cliente;
 import com.example.cleverp.model.Empleat;
+import com.example.cleverp.model.Partides;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -142,5 +143,16 @@ public class empleatController {
 
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-
+    
+    @GetMapping("/editar/partida/{id}")
+    public String editarPartida(Partides partida, Model model) {
+        model.addAttribute("partida", partides.buscarPartida(partida));
+        return "formularioPartida";
+    }
+    
+    @PostMapping("/guardarPartida")
+    public String guardarPartida(Partides partida) {
+        partides.addPartida(partida);
+        return "redirect:/partides";
+    }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmls:th="http://www.thymeleaft.org">
+    <head>
+        <title>Editar partida</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form th:action="@{/guardarPartida}" method="post" th:object="${partida}">
+            <label>Id Partida</label><br/>
+            <input type="text" th:field="*{id}"><br/>
+            <label>Data de la partida</label><br/>
+            <input type="date" th:field="*{data_partida}"/><br/>
+            <label>Aforament</label><br/>
+            <input type="text" th:field="*{aforament}"/><br/>
+            <label>Equip A</label><br/>
+            <input type="text" th:field="*{EquipA_id}"/><br/>
+            <label>Equip B</label><br/>
+            <input type="text" th:field="*{EquipB_id}"/><br/>
+            <label>Guanyador sorteig</label><br/>
+            <input type="text" th:field="*{guanyador_sorteig}"><br/>
+            <label>Producte sorteig</label><br/>
+            <input type="text" th:field="*{producte_sorteig}"><br/>
+            
+            <input type="submit" value="Confirma">
+        </form>
+    </body>
+</html>

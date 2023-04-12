@@ -18,7 +18,7 @@ public interface PartidesInterface {
     public void addPartida(Partides partides);
 
     public void eliminarPartida(Partides partides);
-
+    
     public Partides buscarPartida(Partides partides);
     
 }
