@@ -36,6 +36,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <version>1.18.26</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -82,7 +84,12 @@
             <version>3.0.2</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+        </dependency>
     </dependencies>
+    
 
     <build>
         <plugins>

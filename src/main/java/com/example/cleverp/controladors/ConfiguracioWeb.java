@@ -1,13 +1,9 @@
 package com.example.cleverp.controladors;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-/**
- *
- * @author fta
- */
 
 /*
 *Classe on implementarem diferents mètodes de la interface WebMvcConfigurer per
@@ -20,10 +16,17 @@ public class ConfiguracioWeb implements WebMvcConfigurer {
      *sense passar per un controlador.
     */
     @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+    }
+    
+    @Override
     public void addViewControllers(ViewControllerRegistry registre) {
         //registre.addViewController("/base").setViewName("index"); //Mostrem la pàgina incial que reanomenen com a index, quan encara no ens hem autenticat
         registre.addViewController("/login"); //Mostrem la pàgina login quan l'usuari no ha pogut autenticar-se
-        registre.addViewController("/errors/error403").setViewName("/errors/error403"); //Mostrem la pàgina error403 quan l'usuari no pot accedir a una pàgina determinada.
+        registre.addViewController("/error403").setViewName("error403");
+        registre.addViewController("/error404").setViewName("error404");
     }
+    
 
 }
