@@ -11,6 +11,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <form th:action="@{/guardarEmpleado}" method="post" th:object="${empleat}">
+          
+            <input hidden type="text" th:field="*{idUsuari}" readonly>
+            
             <label>Username</label><br/>
             <input type="text" th:field="*{username}">
             <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
@@ -27,32 +30,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <br/>
 
             <label>DNI</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{dni}"/>
+            <input type="text" th:field="*{dni}"/>
             <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
             <br/>
 
             <label>Salari</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{salari}"/>
+            <input type="text" th:field="*{salari}"/>
             <div th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div>
             <br/>
 
             <label>Email</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{email}"/>
+            <input type="text" th:field="*{email}"/>
             <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
             <br/>
 
             <label>Data Naixement</label><br/>
-            <input type="date" id="phone" name="birth" th:field="*{data_naixement}"/>
+            <input type="date" th:field="*{data_naixement}"/>
             <div th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div>
             <br/>
 
             <label>Direccio</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{direccio}"/>
+            <input type="text" th:field="*{direccio}"/>
             <div th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div>
             <br/>
 
             <label hidden>Password</label><br/>
-            <input  hidden type="text" id="phone" name="birth" th:field="*{password}"/>
+            <input  hidden type="text"  th:field="*{password}"/>
             <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
             <br/>
 

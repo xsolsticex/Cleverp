@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -109,17 +110,16 @@ public class empleatController {
     }
 
     @PostMapping("/guardarEmpleado")
-    public String guardaEmpleat(@Valid Empleat empl, Errors errors) {
+    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
         
-        if(errors.hasErrors()){ //Si s'han produït errors...
+        if (errors.hasErrors()){ //Si s'han produït errors...
              return "formularioEmpleado"; //Mostrem la pàgina del formulari
         }
         
-        empleado.addEmpleat(empl);
+        empleado.addEmpleat(empleat);
         
         return "redirect:/listadoEmpleados";
     }
-    
     
     @GetMapping("/elimina/cliente/{id}")
     public String eliminarClientes(Cliente client) {
