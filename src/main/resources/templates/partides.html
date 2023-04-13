@@ -98,10 +98,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${partida.equipb_id}"></td>
                     <td th:text="${partida.guanyador_sorteig}"></td>
                     <td th:text="${partida.producte_sorteig}"></td>
-                    <!--<td>
-                        <a th:href="@{/elimina/empleado/}+${empleado.idUsuari}"
+                    <td>
+                        <a th:href="@{/elimina/partida/}+${partida.id}"
                            th:text="Elimina"></a>
-                    </td>-->
+                    </td>
                     <td>
                         <a th:href="@{/editar/partida/}+${partida.id}"
                            th:text="Edita"></a>

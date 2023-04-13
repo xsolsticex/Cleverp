@@ -155,4 +155,10 @@ public class empleatController {
         partides.addPartida(partida);
         return "redirect:/partides";
     }
+    
+    @GetMapping("/elimina/partida/{id}")
+    public String eliminarPartida(Partides partida) {
+        this.partides.eliminarPartida(partida);
+        return "redirect:/partides";
+    }
 }
