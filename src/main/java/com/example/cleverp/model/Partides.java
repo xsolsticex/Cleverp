@@ -11,9 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Null;
 import java.sql.Date;
 import java.util.List;
 import lombok.Data;
@@ -37,22 +37,22 @@ public class Partides {
     @Column(name = "aforament")
     private Integer aforament;
     @Nullable
-    @Column(name = "EquipA_id")
-    private Integer EquipA_id;
+    @Column(name = "equipa_id", insertable=false, updatable=false)
+    private Integer equipa_id;
     @Nullable
-    @Column(name = "EquipB_id")
-    private Integer EquipB_id;
+    @Column(name = "equipb_id", insertable=false, updatable=false)
+    private Integer equipb_id;
     @Column(name = "guanyador_sorteig")
     private Integer guanyador_sorteig;
     @Column(name = "producte_sorteig")
     private String producte_sorteig;
     
-    @OneToMany
+    @ManyToOne
     @Nullable
-    @JoinColumn(name = "EquipA_id")
-    private List<Equip> EquipsA;
-    @OneToMany
+    @JoinColumn(name = "equipa_id", referencedColumnName = "id")
+    private Equip equips_a;
+    @ManyToOne
     @Nullable
-    @JoinColumn(name = "EquipB_id")
-    private List<Equip> EquipsB;
+    @JoinColumn(name = "equipb_id", referencedColumnName = "id")
+    private Equip equips_b;
 }

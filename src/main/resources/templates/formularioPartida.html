@@ -12,15 +12,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <form th:action="@{/guardarPartida}" method="post" th:object="${partida}">
             <label>Id Partida</label><br/>
-            <input type="text" th:field="*{id}"><br/>
+            <input type="text" th:field="*{id}" readonly><br/>
             <label>Data de la partida</label><br/>
             <input type="date" th:field="*{data_partida}"/><br/>
             <label>Aforament</label><br/>
             <input type="text" th:field="*{aforament}"/><br/>
             <label>Equip A</label><br/>
-            <input type="text" th:field="*{EquipA_id}"/><br/>
+            <input type="text" th:field="*{equipa_id}"/><br/>
             <label>Equip B</label><br/>
-            <input type="text" th:field="*{EquipB_id}"/><br/>
+            <input type="text" th:field="*{equipb_id}"/><br/>
             <label>Guanyador sorteig</label><br/>
             <input type="text" th:field="*{guanyador_sorteig}"><br/>
             <label>Producte sorteig</label><br/>
