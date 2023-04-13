@@ -3,33 +3,107 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html xmls:th="http://www.thymeleaft.org">
+<html>
     <head>
-        <title>Editar usuario</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C.A.T ClevERP</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../styles.css"/> 
     </head>
     <body>
-        <form th:action="@{/guardarEmpleado}" method="post" th:object="${empleat}">
-            <label>Username</label><br/>
-            <input type="text" th:field="*{username}"><br/>
-            <label>Cognom 1</label><br/>
-            <input type="text" th:field="*{cognom1}"/><br/>
-            <label>Cognom 2</label><br/>
-            <input type="text" th:field="*{cognom2}"/><br/>
-            <label>DNI</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{dni}"/><br/>
-            <label>Salari</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{salari}"/><br/>
-            <label>Email</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{email}"/><br/>
-            <label>Data Naixement</label><br/>
-            <input type="date" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
-            <label>Direccio</label><br/>
-            <input type="text" id="phone" name="birth" th:field="*{direccio}"/><br/>
-            <label hidden>Password</label><br/>
-            <input  hidden type="text" id="phone" name="birth" th:field="*{password}"/><br/>
-            <input type="submit" value="Confirma">
-        </form>
+        <header>
+            <div class="d-flex">
+                <div class="logo mr-auto">
+                    <img src="../../logo.png" alt="Logo">
+                    <div class="mirilla">
+                        <img src="../../mirilla.png" alt="Rotating Image" style="flex:
+                             0 0 auto;">
+
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white
+                     flex-grow-1">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">ClevERP</a>
+                        <button class="navbar-toggler" type="button"
+                                data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="sidebar">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/plantilla}" class="nav-link text-white">Configuració</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <form th:action="@{/empleats/guardar}" method="post" th:object="${empleat}">
+                <div class="form-group">
+                    <label>Username</label><br/>
+                    <input type="text" class="form-control" th:field="*{username}"><br/>
+                    <label>Cognom 1</label><br/>
+                    <input type="text" class="form-control" th:field="*{cognom1}"/><br/>
+                    <label>Cognom 2</label><br/>
+                    <input type="text"class="form-control" th:field="*{cognom2}"/><br/>
+                    <label>DNI</label><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{dni}"/><br/>
+                    <label>Salari</label><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{salari}"/><br/>
+                    <label>Email</label><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{email}"/><br/>
+                    <label>Data Naixement</label><br/>
+                    <input type="date" class="form-control" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
+                    <label>Direccio</label><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{direccio}"/><br/>
+                    <label hidden>Password</label><br/>
+                    <input  hidden type="text" class="form-control" id="phone" name="birth" th:field="*{password}"/><br/>
+                    <input type="submit" class="btn btn-primary" value="Confirma">
+                </div>
+            </form>
+        </div>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     </body>
 </html>
