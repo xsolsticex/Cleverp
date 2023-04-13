@@ -1,5 +1,6 @@
 package com.example.cleverp.model;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +9,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -32,26 +40,59 @@ public class Empleat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Generació autonumèrica de l'id
     @Column(name = "id_usuari")
     private long idUsuari;
+    
+//    @Column(name = "dni")
+//    private String dni;
     @Column(name = "dni")
+    @Pattern(regexp = "^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$", message = "El DNI debe tener 8 dígitos seguidos de una letra permitida: (TRWAGMYFPDXBNJZSQVHLCKE)")
     private String dni;
+    
+//    @Column(name="cognom1")
+//    private String cognom1;
     @Column(name="cognom1")
+    @NotEmpty(message = "El apellido no puede ser nulo ni vacío")
+    @Size(max = 45, message = "El apellido no puede tener más de 45 caracteres")
+    @Pattern(regexp = "[A-Za-z]+", message = "El apellido solo puede contener letras")
     private String cognom1;
+    
+//    @Column(name="cognom2")
+//    private String cognom2;
     @Column(name="cognom2")
+    @Nullable
+    @Size(max = 45, message = "El apellido no puede tener más de 45 caracteres")
+    @Pattern(regexp = "[A-Za-z]+", message = "El apellido solo puede contener letras")
     private String cognom2;
+    
+//    @Column(name="data_naixement")
+//    private Date data_naixement;
     @Column(name="data_naixement")
+    @NotNull(message = "La fecha de nacimiento no puede ser nula")
     private Date data_naixement;
+    
     @Column(name="direccio")
     private String direccio;
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp contrasenya
+    
+    @NotEmpty(message = "El campo contraseña no puede estar vacío")
     @Column(name="password")
     private String password;
+    
     @Column(name="username")
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom d'usuari
+    @NotEmpty(message = "El campo username no puede estar vacío")
+    @Pattern(regexp = "[A-Za-z]+", message = "El nombre de usuario solo puede contener letras")
     private String username;
+    
+//    @Column(name="salari")
+//    private float salari;
     @Column(name="salari")
-    private float salari;
+    @Pattern(regexp = "^[0-9]{3,4}\\.[0-9]{2}$", message = "El salario debe tener 3 o 4 dígitos antes del punto decimal y 2 dígitos después del punto decimal")
+    private String salari;
+    
+//    @Column(name="email")
+//    private String email;
     @Column(name="email")
+    @Email(message = "El correo electrónico debe tener un formato válido")
     private String email;
+    
     /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
      *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
      *tots els rols de l'usuari.
