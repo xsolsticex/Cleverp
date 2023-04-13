@@ -81,7 +81,7 @@ public class Empleat implements Serializable {
 //    @Column(name="salari")
 //    private float salari;
     @Column(name="salari")
-//    @Pattern(regexp = "^[0-9]{3,4}\\.[0-9]{2}$", message = "El salario debe tener 3 o 4 dígitos antes del punto decimal y 2 dígitos después del punto decimal")
+    @Pattern(regexp = "^[0-9]{3,4}\\.[0-9]{2}$", message = "El salario debe tener 3 o 4 dígitos antes del punto decimal y 2 dígitos después del punto decimal")
     private String salari;
     
 //    @Column(name="email")
@@ -90,11 +90,15 @@ public class Empleat implements Serializable {
     @Email(message = "El correo electrónico debe tener un formato válido")
     private String email;
     
-    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
-     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
-     *tots els rols de l'usuari.
-     */
-    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name = "id_rolusuari") 
-    private List<Rol> rols;
+    @Column(name="rol")
+    @Pattern(regexp="(arbitre|administrador|venedor)", message="El rol debe ser 'arbitre', 'administrador' o 'venedor'")
+    private String rol;
+    
+//    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
+//     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
+//     *tots els rols de l'usuari.
+//     */
+////    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
+////    @JoinColumn(name = "id_rolusuari") 
+////    private List<Rol> rols;
 }

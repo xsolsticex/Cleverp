@@ -112,7 +112,7 @@ public class empleatController {
 
     @PostMapping("/guardarEmpleado")
     public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
-        
+        System.out.println(errors);
         if (errors.hasErrors()){ //Si s'han produït errors...
              return "formularioEmpleado"; //Mostrem la pàgina del formulari
         }

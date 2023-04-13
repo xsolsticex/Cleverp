@@ -12,9 +12,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <form th:action="@{/guardarEmpleado}" method="post" th:object="${empleat}">
           
-            <input hidden type="text" th:field="*{idUsuari}" readonly>
+            <label>ID</label><br/>
+            <input type="text" th:field="*{idUsuari}" readonly>
+            <div th:if="${#fields.hasErrors('idUsuari')}" th:errors="*{idUsuari}"></div>
+            <br/>
             
-            <input hidden type="text" th:field="*{rols}" readonly>
+            <label>Rol</label><br/>
+            <input type="text" th:field="*{rol}" readonly>
+            <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div>
+            <br/>
             
             <label>Username</label><br/>
             <input type="text" th:field="*{username}">
