@@ -14,6 +14,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
           
             <input hidden type="text" th:field="*{idUsuari}" readonly>
             
+            <input hidden type="text" th:field="*{rols}" readonly>
+            
             <label>Username</label><br/>
             <input type="text" th:field="*{username}">
             <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>

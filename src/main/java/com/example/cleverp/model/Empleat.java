@@ -95,6 +95,6 @@ public class Empleat implements Serializable {
      *tots els rols de l'usuari.
      */
     @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name = "id_usuari") 
+    @JoinColumn(name = "id_rolusuari") 
     private List<Rol> rols;
 }
