@@ -172,11 +172,11 @@ public class empleatController {
     public String guardarPartida(@Valid Partides partida, Errors errors) {
         
         // Si hi ha informació no válida es torna al formulari amb els errors
-        if (errors.hasErrors()) {
-            System.out.println(partida.toString());
-            System.out.println(errors.toString());
-            return "formularioPartida";
-        }
+//        if (errors.hasErrors()) {
+//            System.out.println(partida.toString());
+//            System.out.println(errors.toString());
+//            return "formularioPartida";
+//        }
 
         partides.addPartida(partida);
         return "redirect:/partides";

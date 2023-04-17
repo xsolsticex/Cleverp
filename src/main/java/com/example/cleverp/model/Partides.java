@@ -45,17 +45,17 @@ public class Partides {
     
     @Column(name = "aforament")
     @NotNull(message = "El aforament no pot ser nul")
-    @Max(value = 60, message = "L'aforament máxim del camp es de 60 jugadors.")
+    //@Max(value = 60, message = "L'aforament máxim del camp es de 60 jugadors.")
     private Integer aforament;
     
     @Column(name = "equipa_id", insertable=false, updatable=false)
     @NotNull(message = "La id de l'equip A no es válida")
-    @Min(value = 1, message = "La id de l'equip A no es válida")
+    //@Min(value = 1, message = "La id de l'equip A no es válida")
     private Integer equipa_id;
     
     @Column(name = "equipb_id", insertable=false, updatable=false)
     @NotNull(message = "La id de l'equip B no es válida")
-    @Min(value = 1, message = "La id de l'equip B no es válida")
+    //@Min(value = 1, message = "La id de l'equip B no es válida")
     private Integer equipb_id;
     
     @Column(name = "guanyador_sorteig")
