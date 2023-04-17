@@ -33,18 +33,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                       <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3">
-                    <a class="nav-link">Benvingut: </a>
-                </li>
-                <li class="nav-item">
-                  <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
-                        <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
-                   </form>
-                </li>
-              </ul>
-            </div>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link">Benvingut: </a>
+                                </li>
+                                <li class="nav-item">
+                                    <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
+                                        <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
                 <div class="d-flex justify-content-end">
@@ -52,71 +52,76 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </header>
-    <div class="sidebar">
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
-          <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{/partides}" class="nav-link active mb-auto">Partides</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{/plantilla}" class="nav-link text-white">Plantilla</a>
-
+        <div class="sidebar">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+                    <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/partides}" class="nav-link active mb-auto">Partides</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/plantilla}" class="nav-link text-white">Plantilla</a>
                 </li>
             </ul>
         </div>
         <div class="main-content">
-            <!-- Partides Recents -->
-            <table class="table table-dark" border="2">
-                <tr>
-                    <th>ID</th>
-                    <th>Data</th>
-                    <th>Participants</th>
-                    <th>Equip 1</th>
-                    <th>Equip 2</th>
-                    <th>Guanyador Sorteig</th>
-                    <th>Producte sortejat</th>
-                    <th colspan="2">Opcions</th>
-                </tr>
-                <tr th:each="partida:${partides}">
-                    <td th:text="${partida.id}"></td>
-                    <td th:text="${partida.data_partida}"></td>
-                    <td th:text="${partida.aforament}"></td>
-                    <td th:text="${partida.equipa_id}"></td>
-                    <td th:text="${partida.equipb_id}"></td>
-                    <td th:text="${partida.guanyador_sorteig}"></td>
-                    <td th:text="${partida.producte_sorteig}"></td>
-                    <td>
-                        <a th:href="@{/elimina/partida/}+${partida.id}"
-                           th:text="Elimina"></a>
-                    </td>
-                    <td>
-                        <a th:href="@{/editar/partida/}+${partida.id}"
-                           th:text="Edita"></a>
-                    </td> 
-                </tr>
-            </table>
-            <footer id="footer" class="bg-light text-center text-lg-start">
-                <!-- Copyright -->
-                <div class="text-center p-3" style="background-color: rgba(0, 0, 0,
-                     0.2);">
-                    ©2023
-                    <a class="text-dark" href="https://mdbootstrap.com/">ClevERP</a>
-                </div>
-                <!-- Copyright -->
-            </footer>
-            <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-            <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+            <p>        <div><a href="/crear/partida/" role="button" th:text="Afegir" class="btn btn-primary btn-lg"/></div>
+            <main class="flex-grow-content-1">
+                <!-- Partides Recents -->
+                <table class="table table-dark" border="2">
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Participants</th>
+                        <th>Equip 1</th>
+                        <th>Equip 2</th>
+                        <th>Guanyador Sorteig</th>
+                        <th>Producte sortejat</th>
+                        <th colspan="2">Opcions</th>
+                    </tr>
+                    <tr th:each="partida:${partides}">
+                        <td th:text="${partida.id}"></td>
+                        <td th:text="${partida.data_partida}"></td>
+                        <td th:text="${partida.aforament}"></td>
+                        <td th:text="${partida.equipa_id}"></td>
+                        <td th:text="${partida.equipb_id}"></td>
+                        <td th:text="${partida.guanyador_sorteig}"></td>
+                        <td th:text="${partida.producte_sorteig}"></td>
+                        <td>
+                            <a th:href="@{/elimina/partida/}+${partida.id}"
+                               class="btn btn-primary"
+                               th:text="Elimina"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/editar/partida/}+${partida.id}"
+                               class="btn btn-danger"
+                               th:text="Edita"></a>
+                        </td> 
+                    </tr>
+                </table>
+                <footer id="footer" class="bg-light text-center text-lg-start">
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0,
+                         0.2);">
+                        ©2023
+                        <a class="text-dark" href="https://mdbootstrap.com/">ClevERP</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+            </main>
+        </div>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     </body>
 </html>

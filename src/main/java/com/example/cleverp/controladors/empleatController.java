@@ -165,13 +165,17 @@ public class empleatController {
 
         return "formularioCliente"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-
- 
     
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
+    }
+    
+    @GetMapping("/crear/partida/")
+    public String crearPartida(Model model) {
+        model.addAttribute("partida", new Partides());
+        return "formularioCrearPartida";
     }
     
     @PostMapping("/guardarPartida")
