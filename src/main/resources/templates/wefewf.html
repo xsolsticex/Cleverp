@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <title>Signin Template for Bootstrap</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+        <!-- Bootstrap core CSS -->
+        
+
+        <!-- Custom styles for this template -->
+        <link href="signin.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <script src="background.js"></script>
+    </head>
+    <body class="text-center m-0 p-0">
+        <canvas id="background"></canvas>
+        <div class="col-md-6 mx-auto">
+            <form class="form-signin" method="POST" th:action="@{/login}">
+                <img class="mb-4 mt-5 mb-3" style="" src="Cleverp.png" alt="" width="500" height="500">
+                <div class="d-flex flex-column flex-shrink-0 p-3" style="backdrop-filter: blur(2px);">
+                    <h1 class="h3 mb-3 font-weight-normal">Error</h1>
+                    <p>
+                        <h1 class="h3 mb-3 font-weight-normal">Accés denegat, no tens els suficientes permisos per entrar en aquesta pàgina.</h1>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

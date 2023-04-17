@@ -3,56 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 
-
-//Delay load until HTML document is loaded
+//Cargar el contenido una vez que se haya cargado el documento HTML
 window.addEventListener('load', () => {
-    // geting canvas by Boujjou Achraf
+    // Obteniendo el lienzo por Boujjou Achraf
     var c = document.getElementById("background");
     var ctx = c.getContext("2d");
 
-    //making the canvas full screen
+    // Haciendo que el lienzo ocupe toda la pantalla
     c.height = window.innerHeight;
     c.width = window.innerWidth;
 
-    //chinese characters - taken from the unicode charset
-    var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-    //converting the string into an array of single characters
-    matrix = matrix.split("");
+    // caracteres
+    var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
 
     var font_size = 10;
-    var columns = c.width / font_size; //number of columns for the rain
-    //an array of drops - one per column
+    var columns = c.width / font_size; // número de columnas para la lluvia
+    // una matriz de gotas - una por cada columna
     var drops = [];
-    //x below is the x coordinate
-    //1 = y co-ordinate of the drop(same for every drop initially)
-    for (var x = 0; x < columns; x++)
+    // x es la coordenada x
+    // 1 = coordenada y de la gota (igual para cada gota inicialmente)
+    for (var x = 0; x < columns; x++) {
         drops[x] = 1;
+    }
 
-    //drawing the characters
+    // dibujando los caracteres
     function draw() {
-        //Black BG for the canvas
-        //translucent BG to show trail
+        // Fondo blanco  para el lienzo
+        // fondo translúcido para mostrar la estela
         ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
         ctx.fillRect(0, 0, c.width, c.height);
 
-        ctx.fillStyle = "#008f24"; //green text
+        ctx.fillStyle = "#008f24"; // texto verde
         ctx.font = font_size + "px arial";
-        //looping over drops
+
+
         for (var i = 0; i < drops.length; i++) {
-            //a random chinese character to print
-            var text = matrix[Math.floor(Math.random() * matrix.length)];
-            //x = i*font_size, y = value of drops[i]*font_size
-            ctx.fillText(text, i * font_size, drops[i] * font_size);
 
-            //sending the drop back to the top randomly after it has crossed the screen
-            //adding a randomness to the reset to make the drops scattered on the Y axis
-            if (drops[i] * font_size > c.height && Math.random() > 0.975)
+            // Seleccionar un carácter aleatorio de "matrix" y dibujarlo en el canvas
+            ctx.fillText(matrix[Math.floor(Math.random() * matrix.length)], i * font_size, drops[i] * font_size);
+
+            // Si la gota ha cruzado el límite inferior del canvas, enviarla de vuelta a la parte superior de manera aleatoria
+            if (drops[i] * font_size > c.height && Math.random() > 0.975) {
                 drops[i] = 0;
+            }
 
-            //incrementing Y coordinate
+            // Incrementar la coordenada Y de la gota
             drops[i]++;
         }
     }
 
-    setInterval(draw, 35);
+    setInterval(draw, 25);
 });

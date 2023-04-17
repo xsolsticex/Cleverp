@@ -6,6 +6,7 @@ package com.example.cleverp.controladors;
 
 import com.example.cleverp.model.Cliente;
 import com.example.cleverp.model.Empleat;
+import com.example.cleverp.model.Partides;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -14,6 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+
+import jakarta.validation.Valid;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -26,16 +31,8 @@ public class empleatController {
     private ClienteService cliente;
     @Autowired
     private EmpleatService empleado;
-//    @GetMapping("/login")
-//    public String login(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "login";
-//    }
-//    @GetMapping("/bootstrap.min.css")
-//    public String loginError(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "Base";
-//    }
+    @Autowired
+    private PartidesService partides;
 
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
@@ -51,6 +48,14 @@ public class empleatController {
         return "listadoClientes";
     }
 
+    
+    @PostMapping("/listadoEmpleados")
+    public String base2(Model m, @AuthenticationPrincipal User username) {
+        m.addAttribute("empleat", empleado.listarEmpleats());
+        return "listadoEmpleados";
+    }
+
+   
     @GetMapping("/empleat/formulari")
     public String formularioEmpleat() {
         return "formularioEmpleado";
@@ -61,10 +66,29 @@ public class empleatController {
         return "formularioCliente";
     }
 
-    @GetMapping("/partides")
-    public String partides() {
-        return "partides";
+    @GetMapping("/base")
+    public String base3(Model m, @AuthenticationPrincipal User username) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "Base";
     }
+
+    @GetMapping("/hola")
+    public String hola(Model m) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "holaAdmin";
+    }
+
+    @GetMapping("/holaVenedor")
+    public String holaVenedor(Model m) {
+        //m.addAttribute("Empleat", new Empleat());
+        return "holaVenedor";
+    }
+
+    @GetMapping("/partides")
+    public String partides(Model model) {
+        model.addAttribute("partides", partides.listarPartides());
+    }
+        
 
     @GetMapping("/configuracio")
     public String configuracio() {
@@ -96,9 +120,15 @@ public class empleatController {
     }
 
     @PostMapping("/empleats/guardar")
-    public String guardaEmpleat(Empleat empl) {
-        empleado.addEmpleat(empl);
-        return "redirect:/empleats";
+    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
+        
+        if (errors.hasErrors()){ //Si s'han produït errors...
+             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+        }
+        
+        empleado.addEmpleat(empleat);
+        
+        return "redirect:/listadoEmpleados";
     }
 
     @GetMapping("/elimina/client/{id}")
@@ -128,5 +158,22 @@ public class empleatController {
 
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-
+    
+    @GetMapping("/editar/partida/{id}")
+    public String editarPartida(Partides partida, Model model) {
+        model.addAttribute("partida", partides.buscarPartida(partida));
+        return "formularioPartida";
+    }
+    
+    @PostMapping("/guardarPartida")
+    public String guardarPartida(Partides partida) {
+        partides.addPartida(partida);
+        return "redirect:/partides";
+    }
+    
+    @GetMapping("/elimina/partida/{id}")
+    public String eliminarPartida(Partides partida) {
+        this.partides.eliminarPartida(partida);
+        return "redirect:/partides";
+    }
 }

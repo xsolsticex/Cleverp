@@ -34,22 +34,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#" th:text="${user}"><span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Features</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a class="nav-link">Benvingut: </a>
+                </li>
+                <li class="nav-item">
+                  <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
+                        <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
+                   </form>
+                </li>
+              </ul>
+            </div>
                     </div>
                 </nav>
                 <div class="d-flex justify-content-end">
@@ -62,8 +57,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <li class="nav-item">
                     <a th:href="@{/clients}" class="nav-link active mb-auto" aria-current="page">Clients</a>
                 </li>
-                <li class="nav-item">
-                    <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+                    <a th:href="@{/empleats}" sec:authorize="hasAnyAuthority('administrador')" class="nav-link text-white">Empleats</a>
                 </li>
                 <li class="nav-item">
                     <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
