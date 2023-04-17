@@ -74,11 +74,7 @@ public class EmpleatService implements UserDetailsService,EmpleatInterface {
          *classe SimpleGrantedAuthority la qual implementa GrantedAuthority, passant-li com a paràmetre 
          *el nom del rol.
          */
-        for (Rol rol : empleat.getRols()) {
-            rols.add(new SimpleGrantedAuthority(rol.getNom()));
-            System.out.println(rol);
-
-        }
+        rols.add(new SimpleGrantedAuthority(empleat.getRol()));
 
         log.info(empleat.getUsername());
         log.info(empleat.getPassword());

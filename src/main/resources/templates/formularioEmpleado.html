@@ -3,65 +3,138 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html xmls:th="http://www.thymeleaft.org">
+<html>
     <head>
-        <title>Editar usuario</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C.A.T ClevERP</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../styles.css"/> 
     </head>
     <body>
-        <form th:action="@{/guardarEmpleado}" method="post" th:object="${empleat}">
-          
-            <input hidden type="text" th:field="*{idUsuari}" readonly>
-            
-            <input hidden type="text" th:field="*{rols}" readonly>
-            
-            <label>Username</label><br/>
-            <input type="text" th:field="*{username}">
-            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-            <br/>
+        <header>
+            <div class="d-flex">
+                <div class="logo mr-auto">
+                    <img src="../../logo.png" alt="Logo">
+                    <div class="mirilla">
+                        <img src="../../mirilla.png" alt="Rotating Image" style="flex:
+                             0 0 auto;">
 
-            <label>Cognom 1</label><br/>
-            <input type="text" th:field="*{cognom1}"/>
-            <div th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div>
-            <br/>
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white
+                     flex-grow-1">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">ClevERP</a>
+                        <button class="navbar-toggler" type="button"
+                                data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="d-flex justify-content-end">
 
-            <label>Cognom 2</label><br/>
-            <input type="text" th:field="*{cognom2}"/>
-            <div th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div>
-            <br/>
+                </div>
+            </div>
+        </header>
+        <div class="sidebar">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/plantilla}" class="nav-link text-white">Configuració</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
 
-            <label>DNI</label><br/>
-            <input type="text" th:field="*{dni}"/>
-            <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-            <br/>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+           <form th:action="@{/empleats/guardar}" method="post" th:object="${empleat}">
 
-            <label>Salari</label><br/>
-            <input type="text" th:field="*{salari}"/>
-            <div th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div>
-            <br/>
-
-            <label>Email</label><br/>
-            <input type="text" th:field="*{email}"/>
-            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-            <br/>
-
-            <label>Data Naixement</label><br/>
-            <input type="date" th:field="*{data_naixement}"/>
-            <div th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div>
-            <br/>
-
-            <label>Direccio</label><br/>
-            <input type="text" th:field="*{direccio}"/>
-            <div th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div>
-            <br/>
-
-            <label hidden>Password</label><br/>
-            <input  hidden type="text"  th:field="*{password}"/>
-            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-            <br/>
-
-    <input type="submit" value="Confirma">
-</form>
+                <div class="form-group">
+                    
+                    <label>ID</label><br/>
+                    <input type="text" th:field="*{idUsuari}" class="form-control" readonly><br/>
+                    <div th:if="${#fields.hasErrors('idUsuari')}" th:errors="*{idUsuari}"></div><br/>
+                    
+                    
+                    <input type="text" th:field="*{password}" style="display:none;">
+                    
+                    
+                    <label>Rol</label><br/>
+                    <input type="text" th:field="*{rol}" class="form-control" readonly><br/>
+                    <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br/>
+                    
+                     <label>Dni</label><br/>
+                    <input type="text" th:field="*{dni}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
+                    
+                    <label>Nom</label><br/>
+                    <input type="text" th:field="*{username}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+                    
+                    <label>Cognom 1</label><br/>
+                    <input type="text" th:field="*{cognom1}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div><br/>
+                    
+                    <label>Cognom 2</label><br/>
+                    <input type="text" th:field="*{cognom2}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div><br/>
+                    
+                    <label>Data Naixement</label><br/>
+                    <input type="text" th:field="*{data_naixement}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div><br/>
+                    
+                    <label>Salarii</label><br/>
+                    <input type="text" th:field="*{salari}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div><br/>
+                    
+                    <label>Email</label><br/>
+                    <input type="text" th:field="*{email}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
+                    
+                    <label>Direccio</label><br/>
+                    <input type="text" th:field="*{direccio}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div><br/>
+                    
+                    <input type="submit" value="Confirma" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     </body>
 </html>

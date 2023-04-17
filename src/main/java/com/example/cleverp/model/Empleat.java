@@ -15,10 +15,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Exercici: Descripció:
@@ -62,9 +63,10 @@ public class Empleat implements Serializable {
     
 //    @Column(name="data_naixement")
 //    private Date data_naixement;
-    @Column(name="data_naixement")
-    @NotNull(message = "La fecha de nacimiento no puede ser nula")
-    private Date data_naixement;
+   @Column(name="data_naixement")
+   @NotNull(message = "La fecha de nacimiento no puede ser nula")
+   @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe de ser en formado AAA-MM-DD")
+    private String data_naixement;
     
     @Column(name="direccio")
     private String direccio;
@@ -81,7 +83,7 @@ public class Empleat implements Serializable {
 //    @Column(name="salari")
 //    private float salari;
     @Column(name="salari")
-//    @Pattern(regexp = "^[0-9]{3,4}\\.[0-9]{2}$", message = "El salario debe tener 3 o 4 dígitos antes del punto decimal y 2 dígitos después del punto decimal")
+    @Pattern(regexp = "^[0-9]{3,4}\\.[0-9]{2}$", message = "El salario debe tener 3 o 4 dígitos antes del punto decimal y 2 dígitos después del punto decimal")
     private String salari;
     
 //    @Column(name="email")
@@ -90,11 +92,15 @@ public class Empleat implements Serializable {
     @Email(message = "El correo electrónico debe tener un formato válido")
     private String email;
     
-    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
-     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
-     *tots els rols de l'usuari.
-     */
-    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name = "id_rolusuari") 
-    private List<Rol> rols;
+    @Column(name="rol")
+    @Pattern(regexp="(arbitre|administrador|venedor)", message="El rol debe ser 'arbitre', 'administrador' o 'venedor'")
+    private String rol;
+    
+//    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un 
+//     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
+//     *tots els rols de l'usuari.
+//     */
+////    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
+////    @JoinColumn(name = "id_rolusuari") 
+////    private List<Rol> rols;
 }

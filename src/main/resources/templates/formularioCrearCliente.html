@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form th:action="@{/guardarCliente}" method="post" th:object="${cliente}">
+        <form th:action="@{/ciente/guardar}" method="post" th:object="${cliente}">
             <label>Nom</label><br/>
             <input type="text" th:field="*{nom}"><br/>
             <label>Cognom 1</label><br/>

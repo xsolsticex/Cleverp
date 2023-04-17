@@ -29,4 +29,7 @@ public class Rol implements Serializable{
     
     @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom
     private String nom;
+    
+    @Column(name="id_rolusuari")
+    private long idRolUsuari;
 }
