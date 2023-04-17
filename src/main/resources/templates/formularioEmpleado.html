@@ -19,64 +19,50 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <img src="../../logo.png" alt="Logo">
                     <div class="mirilla">
                         <img src="../../mirilla.png" alt="Rotating Image" style="flex:
-                             0 0 auto;">
-
-                    </div>
-                </div>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white
-                     flex-grow-1">
-                    <div class="container">
-                        <a class="navbar-brand" href="#">ClevERP</a>
-                        <button class="navbar-toggler" type="button"
-                                data-toggle="collapse" data-target="#navbarNav"
-                                aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home <span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Features</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Pricing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <div class="d-flex justify-content-end">
-
-                </div>
-            </div>
-        </header>
-        <div class="sidebar">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/empleats}" class="nav-link text-white">Empleats</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/plantilla}" class="nav-link text-white">Configuració</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/plantilla}" class="nav-link text-white">Sortir</a>
-
-                </li>
+                             0 0 auto;"></div>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white
+          flex-grow-1">
+        <div class="container">
+          <a class="navbar-brand" href="#">ClevERP</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mr-3">
+                <a class="nav-link">Benvingut: </a>
+              </li>
+              <li class="nav-item">
+                <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
+                  <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
+                </form>
+              </li>
             </ul>
+          </div>
         </div>
+      </nav>
+      <div class="d-flex justify-content-end"></div>
+    </div>
+  </header>
+  <div class="sidebar">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+      </li>
+      <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
+        <a th:href="@{/empleats}" sec:authorize="hasAnyAuthority('administrador')"
+          class="nav-link active mb-auto">Empleats</a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{/}" class="nav-link text-white">Sortir</a>
+
+      </li>
+    </ul>
+  </div>
         <div class="main-content">
            <form th:action="@{/empleats/guardar}" method="post" th:object="${empleat}">
 
@@ -90,11 +76,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <input type="text" th:field="*{password}" style="display:none;">
                     
                     
-                    <label>Rol</label><br/>
-                    <input type="text" th:field="*{rol}" class="form-control" readonly><br/>
-                    <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br/>
+                    <label>Rol</label><br>
+                    <select class="form-control" th:field="*{rol}">
+                      <option value="">Seleccione una opción</option>
+                      <option value="administrador">Administrador</option>
+                      <option value="arbitre">Árbitre</option>
+                      <option value="venedor">Venedor</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br>
                     
-                     <label>Dni</label><br/>
+                    <label>Dni</label><br/>
                     <input type="text" th:field="*{dni}" class="form-control"><br/>
                     <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
                     

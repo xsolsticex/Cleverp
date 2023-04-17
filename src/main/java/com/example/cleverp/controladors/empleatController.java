@@ -34,13 +34,36 @@ public class empleatController {
     @Autowired
     private PartidesService partides;
 
+    //General
+    
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("clientes", cliente.listarClientes());
         return "listadoClientes";
     }
     
+@GetMapping("/hola")
+    public String hola(Model m) {
+        
+        //m.addAttribute("Empleat", new Empleat());
+        
+        return "holaAdmin";
+    }
 
+    @GetMapping("/holaVenedor")
+    public String holaVenedor(Model m) {
+        
+        //m.addAttribute("Empleat", new Empleat());
+        
+        return "holaVenedor";
+    }
+    
+//    @GetMapping("/plantilla")
+//    public String plantilla(Model model) {
+//
+//        return "plantilla";
+//    }
+    
 //    @PostMapping("/")
 //    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
 //        m.addAttribute("clientes", cliente.listarClientes());
@@ -48,7 +71,7 @@ public class empleatController {
 //        return "listadoClientes";
 //    }
 
-    
+    //Empleats:
     @PostMapping("/empleats")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
@@ -87,32 +110,19 @@ public class empleatController {
         return "redirect:/empleats";
     }
     
+    @GetMapping("/elimina/empleat/{idUsuari}")
+    public String eliminarEmpleats(Empleat empl) {
+        this.empleado.eliminarEmpleat(empl);
+        return "redirect:/empleats";
+    }
     
-    
-    //
-
+    //Clients:
     @GetMapping("/client/formulari")
     public String formularioCliente() {
         return "formularioCliente";
     }
 
-//    @GetMapping("/base")
-//    public String base3(Model m, @AuthenticationPrincipal User username) {
-//        //m.addAttribute("Empleat", new Empleat());
-//        return "Base";
-//    }
-
-    @GetMapping("/hola")
-    public String hola(Model m) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "holaAdmin";
-    }
-
-    @GetMapping("/holaVenedor")
-    public String holaVenedor(Model m) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "holaVenedor";
-    }
+    
 
     @GetMapping("/partides")
     public String partides(Model model) {
@@ -124,12 +134,6 @@ public class empleatController {
     @GetMapping("/configuracio")
     public String configuracio() {
         return "configuracio";
-    }
-
-    @GetMapping("/plantilla")
-    public String plantilla(Model model) {
-
-        return "plantilla";
     }
 
     @GetMapping("/clients")
@@ -152,11 +156,7 @@ public class empleatController {
         return "redirect:/clients";
     }
 
-    @GetMapping("/elimina/empleat/{idUsuari}")
-    public String eliminarEmpleats(Empleat empl) {
-        this.empleado.eliminarEmpleat(empl);
-        return "redirect:/empleats";
-    }
+    
 
     @GetMapping("/editar/client/{id}")
     public String editarCliente(Cliente client, Model model) {
@@ -165,17 +165,13 @@ public class empleatController {
 
         return "formularioCliente"; //Retorna la pàgina amb el formulari de les dades del gos
     }
+
+    //Partides
     
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
-    }
-    
-    @GetMapping("/crear/partida/")
-    public String crearPartida(Model model) {
-        model.addAttribute("partida", new Partides());
-        return "formularioCrearPartida";
     }
     
     @PostMapping("/guardarPartida")

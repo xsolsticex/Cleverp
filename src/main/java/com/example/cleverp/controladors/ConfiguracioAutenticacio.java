@@ -64,7 +64,9 @@ public class ConfiguracioAutenticacio {
                 .requestMatchers("/base/**").hasAnyAuthority("administrador", "arbitre", "venedor") //URL iniciGossos on pot accedir el rol de veterinari o pacient
                 .requestMatchers("/hola/**").hasAnyAuthority("administrador")
                 .requestMatchers("/holaVenedor/**").hasAnyAuthority("arbitre", "venedor")
-                .requestMatchers("/listadoEmpleado/**").hasAnyAuthority("administrador")
+                .requestMatchers("/empleats/**").hasAnyAuthority("administrador")
+                .requestMatchers("/editar/empleat/**").hasAnyAuthority("administrador")
+                .requestMatchers("/elimina/empleat/**").hasAnyAuthority("administrador")
                 .anyRequest().authenticated() //Qualsevol altre sol.licitud que no coincideixi amb les regles anteriors cal autenticació
                 )
                 .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
