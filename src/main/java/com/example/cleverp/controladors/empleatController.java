@@ -38,15 +38,13 @@ public class empleatController {
         m.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
-    
-    
+
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
 
-   
     @GetMapping("/formularioEmpleat")
     public String formularioEmpleat() {
         return "formularioEmpleado";
@@ -55,6 +53,11 @@ public class empleatController {
     @GetMapping("/formularioCliente")
     public String formularioCliente() {
         return "formularioCliente";
+    }
+    
+    @GetMapping("/formularioPartida")
+    public String formularioPartida(Model model) {
+        return "formularioPartida";
     }
 
     @GetMapping("/base")
@@ -112,16 +115,16 @@ public class empleatController {
 
     @PostMapping("/guardarEmpleado")
     public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
-        
+
         if (errors.hasErrors()){ //Si s'han produït errors...
-             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+            return "formularioEmpleado"; //Mostrem la pàgina del formulari
         }
-        
+
         empleado.addEmpleat(empleat);
-        
+
         return "redirect:/listadoEmpleados";
     }
-    
+
     @GetMapping("/elimina/cliente/{id}")
     public String eliminarClientes(Cliente client) {
         this.cliente.eliminarCliente(client);
@@ -153,19 +156,32 @@ public class empleatController {
 
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-    
+
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
     }
-    
+
+//    @ModelAttribute("partida")
+//    public Partides partida() {
+//        return new Partides();
+//    }
+
     @PostMapping("/guardarPartida")
-    public String guardarPartida(Partides partida) {
+    public String guardarPartida(@Valid Partides partida, Errors errors) {
+        
+        // Si hi ha informació no válida es torna al formulari amb els errors
+        if (errors.hasErrors()) {
+            System.out.println(partida.toString());
+            System.out.println(errors.toString());
+            return "formularioPartida";
+        }
+
         partides.addPartida(partida);
         return "redirect:/partides";
     }
-    
+
     @GetMapping("/elimina/partida/{id}")
     public String eliminarPartida(Partides partida) {
         this.partides.eliminarPartida(partida);

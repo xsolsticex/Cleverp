@@ -3,7 +3,7 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html xmls:th="http://www.thymeleaft.org">
+<html xmls:th="http://www.thymeleaf.org">
     <head>
         <title>Editar partida</title>
         <meta charset="UTF-8">
@@ -11,20 +11,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <form th:action="@{/guardarPartida}" method="post" th:object="${partida}">
+            
             <label>Id Partida</label><br/>
-            <input type="text" th:field="*{id}" readonly><br/>
+            <input type="text" th:field="*{id}"/><br/>
+            
             <label>Data de la partida</label><br/>
             <input type="date" th:field="*{data_partida}"/><br/>
+            <div th:if="${#fields.hasErrors('data_partida')}" 
+                 th:errors="*{data_partida}"></div>
+            
             <label>Aforament</label><br/>
             <input type="text" th:field="*{aforament}"/><br/>
+            <div th:if="${#fields.hasErrors('aforament')}" 
+                 th:errors="*{aforament}"></div>
+            
             <label>Equip A</label><br/>
             <input type="text" th:field="*{equipa_id}"/><br/>
+            <div th:if="${#fields.hasErrors('equipa_id')}" 
+                 th:errors="*{equipa_id}"></div>
+            
             <label>Equip B</label><br/>
             <input type="text" th:field="*{equipb_id}"/><br/>
+            <div th:if="${#fields.hasErrors('equipb_id')}" 
+                 th:errors="*{equipb_id}"></div>
+            
             <label>Guanyador sorteig</label><br/>
             <input type="text" th:field="*{guanyador_sorteig}"><br/>
+            <div th:if="${#fields.hasErrors('guanyador_sorteig')}" 
+                 th:errors="*{guanyador_sorteig}"></div>
+            
             <label>Producte sorteig</label><br/>
             <input type="text" th:field="*{producte_sorteig}"><br/>
+            <div th:if="${#fields.hasErrors('producte_sorteig')}" 
+                 th:errors="*{producte_sorteig}"></div>
             
             <input type="submit" value="Confirma">
         </form>
