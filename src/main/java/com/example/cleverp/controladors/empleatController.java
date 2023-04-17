@@ -87,6 +87,7 @@ public class empleatController {
     @GetMapping("/partides")
     public String partides(Model model) {
         model.addAttribute("partides", partides.listarPartides());
+        return "partides";
     }
         
 

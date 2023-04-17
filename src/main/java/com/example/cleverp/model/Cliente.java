@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.sql.Date;
 import lombok.Data;
 
@@ -40,7 +41,7 @@ public class Cliente {
     private Date data_naixement;
     @Column(name="direccio")
     private String direccio;
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp contrasenya
+    @NotNull//Validació perquè l'usuari afegeixi contingut al camp contrasenya
     @Column(name="data_registre")
     private Date data_registre;
     @Column(name="email")
