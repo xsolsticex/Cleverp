@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 
 import jakarta.validation.Valid;
 import org.springframework.validation.Errors;
@@ -35,10 +36,18 @@ public class empleatController {
 
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
-        m.addAttribute("empleat", empleado.listarEmpleats());
-        return "listadoEmpleados";
+        m.addAttribute("clientes", cliente.listarClientes());
+        return "listadoClientes";
     }
     
+
+    @PostMapping("/")
+    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
+        m.addAttribute("clientes", cliente.listarClientes());
+        m.addAttribute("user", user);
+        return "listadoClientes";
+    }
+
     
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
@@ -47,12 +56,12 @@ public class empleatController {
     }
 
    
-    @GetMapping("/formularioEmpleat")
+    @GetMapping("/empleat/formulari")
     public String formularioEmpleat() {
         return "formularioEmpleado";
     }
 
-    @GetMapping("/formularioCliente")
+    @GetMapping("/client/formulari")
     public String formularioCliente() {
         return "formularioCliente";
     }
@@ -80,13 +89,14 @@ public class empleatController {
         model.addAttribute("partides", partides.listarPartides());
         return "partides";
     }
+        
 
     @GetMapping("/configuracio")
     public String configuracio() {
         return "configuracio";
     }
 
-    @GetMapping("/listadoEmpleados")
+    @GetMapping("/empleats")
     public String empleados(Model model) {
         model.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
@@ -98,19 +108,19 @@ public class empleatController {
         return "plantilla";
     }
 
-    @GetMapping("/listadoClientes")
+    @GetMapping("/clients")
     public String clientes(Model model) {
         model.addAttribute("clientes", cliente.listarClientes());
         return "listadoClientes";
     }
 
-    @PostMapping("/guardarCliente")
+    @PostMapping("/clients/guardar")
     public String guardaCliente(Cliente client) {
         cliente.addCliente(client);
-        return "redirect:/listadoClientes";
+        return "redirect:/clients";
     }
 
-    @PostMapping("/guardarEmpleado")
+    @PostMapping("/empleats/guardar")
     public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
         System.out.println(errors);
         if (errors.hasErrors()){ //Si s'han produït errors...
@@ -121,34 +131,30 @@ public class empleatController {
         
         return "redirect:/listadoEmpleados";
     }
-    
-    @GetMapping("/elimina/cliente/{id}")
+
+    @GetMapping("/elimina/client/{id}")
     public String eliminarClientes(Cliente client) {
         this.cliente.eliminarCliente(client);
-        return "redirect:/listadoClientes";
+        return "redirect:/clients";
     }
 
-    @GetMapping("/elimina/empleado/{idUsuari}")
+    @GetMapping("/elimina/empleat/{idUsuari}")
     public String eliminarEmpleats(Empleat empl) {
         this.empleado.eliminarEmpleat(empl);
-        return "redirect:/listadoEmpleados";
+        return "redirect:/empleats";
     }
 
-    @GetMapping("/editar/cliente/{id}")
+    @GetMapping("/editar/client/{id}")
     public String editarCliente(Cliente client, Model model) {
 
-        /*Cerquem el gos passat per paràmetre, al qual li correspón l'idgos de @GetMapping mitjançant 
-         *el mètode cercarGos de la capa de servei.*/
         model.addAttribute("cliente", cliente.buscarCliente(client));
 
         return "formularioCliente"; //Retorna la pàgina amb el formulari de les dades del gos
     }
 
-    @GetMapping("/editar/empleado/{idUsuari}")
+    @GetMapping("/editar/empleat/{idUsuari}")
     public String editarEmpleat(Empleat empl, Model model) {
 
-        /*Cerquem el gos passat per paràmetre, al qual li correspón l'idgos de @GetMapping mitjançant 
-         *el mètode cercarGos de la capa de servei.*/
         model.addAttribute("empleat", empleado.buscarEmpleat(empl));
 
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos

@@ -9,12 +9,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.sql.Date;
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -43,7 +41,7 @@ public class Cliente {
     private Date data_naixement;
     @Column(name="direccio")
     private String direccio;
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp contrasenya
+    @NotNull//Validació perquè l'usuari afegeixi contingut al camp contrasenya
     @Column(name="data_registre")
     private Date data_registre;
     @Column(name="email")
