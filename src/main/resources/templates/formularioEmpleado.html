@@ -52,6 +52,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                 </nav>
+                <div class="d-flex justify-content-end">
+
+                </div>
             </div>
         </header>
         <div class="sidebar">
@@ -75,27 +78,55 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </ul>
         </div>
         <div class="main-content">
-            <form th:action="@{/empleats/guardar}" method="post" th:object="${empleat}">
+           <form th:action="@{/empleats/guardar}" method="post" th:object="${empleat}">
+
                 <div class="form-group">
-                    <label>Username</label><br/>
-                    <input type="text" class="form-control" th:field="*{username}"><br/>
+                    
+                    <label>ID</label><br/>
+                    <input type="text" th:field="*{idUsuari}" class="form-control" readonly><br/>
+                    <div th:if="${#fields.hasErrors('idUsuari')}" th:errors="*{idUsuari}"></div><br/>
+                    
+                    
+                    <input type="text" th:field="*{password}" style="display:none;">
+                    
+                    
+                    <label>Rol</label><br/>
+                    <input type="text" th:field="*{rol}" class="form-control" readonly><br/>
+                    <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br/>
+                    
+                     <label>Dni</label><br/>
+                    <input type="text" th:field="*{dni}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
+                    
+                    <label>Nom</label><br/>
+                    <input type="text" th:field="*{username}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+                    
                     <label>Cognom 1</label><br/>
-                    <input type="text" class="form-control" th:field="*{cognom1}"/><br/>
+                    <input type="text" th:field="*{cognom1}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div><br/>
+                    
                     <label>Cognom 2</label><br/>
-                    <input type="text"class="form-control" th:field="*{cognom2}"/><br/>
-                    <label>DNI</label><br/>
-                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{dni}"/><br/>
-                    <label>Salari</label><br/>
-                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{salari}"/><br/>
-                    <label>Email</label><br/>
-                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{email}"/><br/>
+                    <input type="text" th:field="*{cognom2}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div><br/>
+                    
                     <label>Data Naixement</label><br/>
-                    <input type="date" class="form-control" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
+                    <input type="text" th:field="*{data_naixement}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div><br/>
+                    
+                    <label>Salarii</label><br/>
+                    <input type="text" th:field="*{salari}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div><br/>
+                    
+                    <label>Email</label><br/>
+                    <input type="text" th:field="*{email}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
+                    
                     <label>Direccio</label><br/>
-                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{direccio}"/><br/>
-                    <label hidden>Password</label><br/>
-                    <input  hidden type="text" class="form-control" id="phone" name="birth" th:field="*{password}"/><br/>
-                    <input type="submit" class="btn btn-primary" value="Confirma">
+                    <input type="text" th:field="*{direccio}" class="form-control"/><br/>
+                    <div th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div><br/>
+                    
+                    <input type="submit" value="Confirma" class="btn btn-primary">
                 </div>
             </form>
         </div>

@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Exercici: Descripció:
@@ -62,9 +63,10 @@ public class Empleat implements Serializable {
     
 //    @Column(name="data_naixement")
 //    private Date data_naixement;
-    @Column(name="data_naixement")
-    @NotNull(message = "La fecha de nacimiento no puede ser nula")
-    private Date data_naixement;
+   @Column(name="data_naixement")
+   @NotNull(message = "La fecha de nacimiento no puede ser nula")
+   @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe de ser en formado AAA-MM-DD")
+    private String data_naixement;
     
     @Column(name="direccio")
     private String direccio;

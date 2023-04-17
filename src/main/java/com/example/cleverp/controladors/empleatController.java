@@ -41,17 +41,23 @@ public class empleatController {
     }
     
 
-    @PostMapping("/")
-    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
-        m.addAttribute("clientes", cliente.listarClientes());
-        m.addAttribute("user", user);
-        return "listadoClientes";
-    }
+//    @PostMapping("/")
+//    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
+//        m.addAttribute("clientes", cliente.listarClientes());
+//        m.addAttribute("user", user);
+//        return "listadoClientes";
+//    }
 
     
-    @PostMapping("/listadoEmpleados")
+    @PostMapping("/empleats")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
+        return "listadoEmpleados";
+    }
+    
+    @GetMapping("/empleats")
+    public String empleados(Model model, @AuthenticationPrincipal User username) {
+        model.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
 
@@ -60,17 +66,41 @@ public class empleatController {
     public String formularioEmpleat() {
         return "formularioEmpleado";
     }
+    
+     @GetMapping("/editar/empleat/{idUsuari}")
+    public String editarEmpleat(Empleat empl, Model model) {
+
+        model.addAttribute("empleat", empleado.buscarEmpleat(empl));
+
+        return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
+    }
+    
+    @PostMapping("/empleats/guardar")
+    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
+        System.out.println(errors);
+        if (errors.hasErrors()){ //Si s'han produït errors...
+             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+        }
+        
+        empleado.addEmpleat(empleat);
+        
+        return "redirect:/empleats";
+    }
+    
+    
+    
+    //
 
     @GetMapping("/client/formulari")
     public String formularioCliente() {
         return "formularioCliente";
     }
 
-    @GetMapping("/base")
-    public String base3(Model m, @AuthenticationPrincipal User username) {
-        //m.addAttribute("Empleat", new Empleat());
-        return "Base";
-    }
+//    @GetMapping("/base")
+//    public String base3(Model m, @AuthenticationPrincipal User username) {
+//        //m.addAttribute("Empleat", new Empleat());
+//        return "Base";
+//    }
 
     @GetMapping("/hola")
     public String hola(Model m) {
@@ -96,12 +126,6 @@ public class empleatController {
         return "configuracio";
     }
 
-    @GetMapping("/empleats")
-    public String empleados(Model model) {
-        model.addAttribute("empleat", empleado.listarEmpleats());
-        return "listadoEmpleados";
-    }
-
     @GetMapping("/plantilla")
     public String plantilla(Model model) {
 
@@ -120,17 +144,7 @@ public class empleatController {
         return "redirect:/clients";
     }
 
-    @PostMapping("/empleats/guardar")
-    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
-        System.out.println(errors);
-        if (errors.hasErrors()){ //Si s'han produït errors...
-             return "formularioEmpleado"; //Mostrem la pàgina del formulari
-        }
-        
-        empleado.addEmpleat(empleat);
-        
-        return "redirect:/listadoEmpleados";
-    }
+   
 
     @GetMapping("/elimina/client/{id}")
     public String eliminarClientes(Cliente client) {
@@ -152,13 +166,7 @@ public class empleatController {
         return "formularioCliente"; //Retorna la pàgina amb el formulari de les dades del gos
     }
 
-    @GetMapping("/editar/empleat/{idUsuari}")
-    public String editarEmpleat(Empleat empl, Model model) {
-
-        model.addAttribute("empleat", empleado.buscarEmpleat(empl));
-
-        return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
-    }
+ 
     
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
