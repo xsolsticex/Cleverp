@@ -1,4 +1,4 @@
-# School Quest
+# ClevERP
 <img src="https://i.postimg.cc/gkFxQMJS/Cleverp-1.png">
 
 Desenvolupat per: Brian Camps, Carlos Jimenez i Aitor perez alumnes de 2DAMT de l'institut Nicolau Copernic.
