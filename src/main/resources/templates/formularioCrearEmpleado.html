@@ -70,11 +70,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     
                     <label>Username</label><br/>
                     <input type="text" th:field="*{username}" class="form-control"><br/>
-                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
                     
                      <label>Password</label><br/>
                     <input type="text" th:field="*{password}" class="form-control"><br/>
-                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
                     
                     <label>Rol</label><br>
                     <select class="form-control" th:field="*{rol}">
@@ -83,31 +83,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                       <option value="arbitre">Árbitre</option>
                       <option value="venedor">Venedor</option>
                     </select>
-                    <div th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br>
+                    <div style="color: red" th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></div><br>
                     
                     <label>Dni</label><br/>
                     <input type="text" th:field="*{dni}" class="form-control"><br/>
-                    <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
                     
                     <label>Nom</label><br/>
                     <input type="text" th:field="*{nom}" class="form-control"><br/>
-                    <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div><br/>
                     
                     <label>Cognom 1</label><br/>
                     <input type="text" th:field="*{cognom1}" class="form-control"/><br/>
-                    <div th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div><br/>
                     
                     <label>Cognom 2</label><br/>
                     <input type="text" th:field="*{cognom2}" class="form-control"/><br/>
-                    <div th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div><br/>
                     
                     <label>Data Naixement</label><br/>
                     <input type="text" th:field="*{data_naixement}" class="form-control"/><br/>
-                    <div th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div><br/>
                     
                     <label>Salari</label><br/>
                     <input type="text" th:field="*{salari}" class="form-control"><br/>
-                    <div th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('salari')}" th:errors="*{salari}"></div><br/>
                     
                     <label>Email</label><br/>
                     <input type="text" th:field="*{email}" class="form-control"/><br/>
@@ -115,7 +115,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     
                     <label>Direccio</label><br/>
                     <input type="text" th:field="*{direccio}" class="form-control"/><br/>
-                    <div th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div><br/>
                     
                     <input type="submit" value="Confirma" class="btn btn-primary">
                 </div>
