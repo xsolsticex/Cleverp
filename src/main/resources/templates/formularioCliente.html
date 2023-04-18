@@ -81,6 +81,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <form th:action="@{/clients/guardar}" method="post" th:object="${cliente}">
 
                 <div class="form-group">
+                    <label>ID</label><br/>
+                    <input type="text" th:field="*{id}" class="form-control"/><br/>
                     <label>Nom</label><br/>
                     <input type="text" th:field="*{nom}" class="form-control"><br/>
 
