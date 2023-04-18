@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
 import jakarta.validation.Valid;
+import javax.naming.spi.DirStateFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.Errors;
@@ -244,8 +245,26 @@ public class empleatController {
     }
 
     @PostMapping("/client/afegir")
-    public String afegirClient(Cliente client) {
-        cliente.addCliente(client);
-        return "redirect:/clients";
+    public String afegirClient(@Valid @ModelAttribute Cliente client, Errors errors, Model m) {
+
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "formularioCrearCliente";
+        }
+        try {
+            cliente.addCliente(client);
+            return "redirect:/clients";
+        } catch (DataIntegrityViolationException e) {
+            if (e.getCause() instanceof ConstraintViolationException) {
+                ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
+                if (ex.getConstraintName().contains("dni")) {
+                    errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
+                } else if (ex.getConstraintName().contains("email")) {
+                    errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
+                }
+            }
+            return "formularioCrearCliente";
+        }
+
     }
 }

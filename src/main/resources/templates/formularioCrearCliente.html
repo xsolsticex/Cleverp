@@ -71,22 +71,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="main-content">
             <div class="form-group">
                 <form th:action="@{/client/afegir}" method="post" th:object="${client}">
+                    
+                    
+                    <input type="text" hidden class="form-control" th:field="*{id}"><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div><br/>
                     <label>Nom</label><br/>
                     <input type="text" class="form-control" th:field="*{nom}"><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div><br/>
+                    
                     <label>Cognom 1</label><br/>
                     <input type="text" class="form-control" th:field="*{cognom1}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('cognom1')}" th:errors="*{cognom1}"></div><br/>
+                    
                     <label>Cognom 2</label><br/>
                     <input type="text" class="form-control" th:field="*{cognom2}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('cognom2')}" th:errors="*{cognom2}"></div><br/>
+                    
                     <label>DNI</label><br/>
                     <input type="text" class="form-control" id="phone" name="birth" th:field="*{dni}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
+                    
                     <label>Email</label><br/>
                     <input type="text" class="form-control" id="phone" name="birth" th:field="*{email}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
+                    
                     <label>Data Naixement</label><br/>
-                    <input type="date" class="form-control" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{data_naixement}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('data_naixement')}" th:errors="*{data_naixement}"></div><br/>
+                    
                     <label>Data Registre</label><br/>
-                    <input type="date" class="form-control" id="phone" name="birth" th:field="*{data_registre}"/><br/>
+                    <input type="text" class="form-control" id="phone" name="birth" th:field="*{data_registre}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('data_registre')}" th:errors="*{data_registre}"></div><br/>
+                    
                     <label>Direccio</label><br/>
                     <input type="text" class="form-control" id="phone" name="birth" th:field="*{direccio}"/><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('direccio')}" th:errors="*{direccio}"></div><br/>
                     <input type="submit" value="Confirma" class="btn btn-primary">
                 </form>
             </div>
