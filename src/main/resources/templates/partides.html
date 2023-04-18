@@ -96,11 +96,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${partida.producte_sorteig}"></td>
                         <td>
                             <a th:href="@{/elimina/partida/}+${partida.id}"
-                               class="btn btn-primary">[[#{partides.elimina}]]</a>
+                               class="btn btn-danger">[[#{partides.elimina}]]</a>
                         </td>
                         <td>
                             <a th:href="@{/editar/partida/}+${partida.id}"
-                               class="btn btn-danger">[[#{partides.edita}]]</a>
+                               class="btn btn-primary">[[#{partides.edita}]]</a>
                         </td> 
                     </tr>
                 </table>
