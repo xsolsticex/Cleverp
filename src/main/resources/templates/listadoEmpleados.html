@@ -29,7 +29,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
-                  <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
+                  <button type="submit" class="btn btn-outline-light" value="Logout">[[#{global.logout}]]</button>
                 </form>
               </li>
             </ul>
@@ -42,17 +42,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
   <div class="sidebar">
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+        <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">[[#{global.clients}]]</a>
       </li>
       <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
         <a th:href="@{/empleats}" sec:authorize="hasAnyAuthority('administrador')"
-          class="nav-link active mb-auto">Empleats</a>
+          class="nav-link active mb-auto">[[#{global.empleats}]]</a>
       </li>
       <li class="nav-item">
-        <a th:href="@{/partides}" class="nav-link text-white">Partides</a>
+        <a th:href="@{/partides}" class="nav-link text-white">[[#{global.partides}]]</a>
       </li>
       <li class="nav-item">
-        <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+        <a th:href="@{/configuracio}" class="nav-link text-white">[[#{global.configuracio}]]</a>
       </li>
       <li class="nav-item">
         <a th:href="@{/}" class="nav-link text-white">Sortir</a>
@@ -64,33 +64,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       
 <div class="jumbotron col-md-2 p-3 my-jumbotron" style="height: 100px; background-color: #343a40; color: white;">
   <h1><span th:text="${empleat.size()}"></span></h1>
-  <p style="text-align: right; padding-left: 10px;">Empleats registrats</p>
+  <p style="text-align: right; padding-left: 10px;">[[#{empleats.count}]]</p>
   <img src="user.png" style="max-width: 100%; max-height: 100%; margin-left: 50px; ">
 </div>
       
-<div><a href="/empleat/nou" role="button" class="btn btn-primary btn-block">Afegir nou empleat +</a></div>
+<div><a href="/empleat/nou" role="button" class="btn btn-primary btn-block">[[#{empleats.add}]]</a></div>
 
      <table class="table table-dark mt-2" border="2">
       <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>DNI</th>
-        <th>Nom</th>
-        <th>Primer Cognom</th>
-        <th>Segon Cognom</th>
-        <th>Data Naixement</th>
-        <th>Direccio</th>
+        <th>[[#{empleats.id}]]</th>
+        <th>[[#{empleats.rol}]]</th>
+        <th>[[#{empleats.username}]]</th>
+        <th>[[#{empleats.dni}]]</th>
+        <th>[[#{empleats.nom}]]</th>
+        <th>[[#{empleats.surname1}]]</th>
+        <th>[[#{empleats.surname2}]]</th>
+        <th>[[#{empleats.mail}]]</th>
+        <th>[[#{empleats.dataNaixement}]]</th>
+        <th>[[#{empleats.address}]]</th>
+        <th>[[#{empleats.salari}]]</th>
         <th colspan="3">Opcions</th>
       </tr>
       <tr th:each="empleado:${empleat}">
         <td th:text="${empleado.idUsuari}"></td>
+        <td th:text="${empleado.rol}"></td>
         <td th:text="${empleado.username}"></td>
         <td th:text="${empleado.dni}"></td>
         <td th:text="${empleado.nom}"></td>
         <td th:text="${empleado.cognom1}"></td>
         <td th:text="${empleado.cognom2}"></td>
+        <td th:text="${empleado.email}"></td>
         <td th:text="${empleado.data_naixement}"></td>
         <td th:text="${empleado.direccio}"></td>
+        <td th:text="${empleado.salari}"></td>
         <td>
           <a th:href="@{/editar/empleat/}+${empleado.idUsuari}" class="btn btn-primary" th:text="Edita"></a>
         </td>
@@ -107,7 +113,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0,
                      0.2);">
         ©2023
-        <a class="text-dark" href="https://mdbootstrap.com/">ClevERP</a>
+        <a class="text-dark" href="/">[[#{global.cleverpMayus}]]</a>
       </div>
       <!-- Copyright -->
     </footer>

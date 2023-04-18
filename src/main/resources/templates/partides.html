@@ -55,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="sidebar">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">[[#{partides.clients}]]</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
                     <a th:href="@{/empleats}" class="nav-link text-white">[[#{partides.empleats}]]</a>
