@@ -37,50 +37,45 @@ public class empleatController {
     private PartidesService partides;
 
     //General
-    
     @GetMapping("/")
     public String base(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("clientes", cliente.listarClientes());
         return "listadoClientes";
     }
-    
-@GetMapping("/hola")
+
+    @GetMapping("/hola")
     public String hola(Model m) {
-        
+
         //m.addAttribute("Empleat", new Empleat());
-        
         return "holaAdmin";
     }
 
     @GetMapping("/holaVenedor")
     public String holaVenedor(Model m) {
-        
+
         //m.addAttribute("Empleat", new Empleat());
-        
         return "holaVenedor";
     }
-    
+
 //    @GetMapping("/plantilla")
 //    public String plantilla(Model model) {
 //
 //        return "plantilla";
 //    }
-    
 //    @PostMapping("/")
 //    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
 //        m.addAttribute("clientes", cliente.listarClientes());
 //        m.addAttribute("user", user);
 //        return "listadoClientes";
 //    }
-
     //Empleats:
     @PostMapping("/empleats")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
-         m.addAttribute("nomUsuari", username.getUsername());
+        m.addAttribute("nomUsuari", username.getUsername());
         return "listadoEmpleados";
     }
-    
+
     @GetMapping("/empleats")
     public String empleados(Model model, @AuthenticationPrincipal User username) {
         model.addAttribute("empleat", empleado.listarEmpleats());
@@ -88,30 +83,29 @@ public class empleatController {
         return "listadoEmpleados";
     }
 
-   
     @GetMapping("/empleat/formulari")
-    public String formularioEmpleat( @AuthenticationPrincipal User username) {
+    public String formularioEmpleat(@AuthenticationPrincipal User username) {
         return "formularioEmpleado";
     }
-    
-     @GetMapping("/editar/empleat/{idUsuari}")
+
+    @GetMapping("/editar/empleat/{idUsuari}")
     public String editarEmpleat(Empleat empl, Model model, @AuthenticationPrincipal User username) {
 
         model.addAttribute("empleat", empleado.buscarEmpleat(empl));
         model.addAttribute("nomUsuari", username.getUsername());
-        
+
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-    
+
     @GetMapping("/empleat/nou")
     public String crearEmpleat(Model model, @AuthenticationPrincipal User username) {
-        
+
         model.addAttribute("empleat", new Empleat());
         model.addAttribute("nomUsuari", username.getUsername());
-        
+
         return "formularioCrearEmpleado";
     }
-    
+
 //    @PostMapping("/empleats/guardar")
 //    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
 //        System.out.println(errors);
@@ -123,73 +117,69 @@ public class empleatController {
 //        
 //        return "redirect:/empleats";
 //    }
-    
     @PostMapping("/empleats/guardarNou")
-public String guardaNouEmpleat(@Valid Empleat empleat, Errors errors, Model model,  @AuthenticationPrincipal User username) {
-    if (errors.hasErrors()) {
-        return "formularioCrearEmpleado";
-    }
-    try {
-        empleado.addEmpleat(empleat);
-        return "redirect:/empleats";
-    } catch (DataIntegrityViolationException e) {
-        if (e.getCause() instanceof ConstraintViolationException) {
-            ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
-            if (ex.getConstraintName().contains("dni")) {
-                errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
-            } else if (ex.getConstraintName().contains("email")) {
-                errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
-            } else if (ex.getConstraintName().contains("username")) {
-                errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
-            }
+    public String guardaNouEmpleat(@Valid Empleat empleat, Errors errors, Model model, @AuthenticationPrincipal User username) {
+        if (errors.hasErrors()) {
+            return "formularioCrearEmpleado";
         }
-        return "formularioCrearEmpleado";
+        try {
+            empleado.addEmpleat(empleat);
+            return "redirect:/empleats";
+        } catch (DataIntegrityViolationException e) {
+            if (e.getCause() instanceof ConstraintViolationException) {
+                ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
+                if (ex.getConstraintName().contains("dni")) {
+                    errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
+                } else if (ex.getConstraintName().contains("email")) {
+                    errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
+                } else if (ex.getConstraintName().contains("username")) {
+                    errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
+                }
+            }
+            return "formularioCrearEmpleado";
+        }
     }
-}
-    
+
     @PostMapping("/empleats/guardar")
-public String guardaEmpleat(@Valid Empleat empleat, Errors errors, Model model) {
-    if (errors.hasErrors()) {
-        return "formularioEmpleado";
-    }
-    try {
-        empleado.addEmpleat(empleat);
-        return "redirect:/empleats";
-    } catch (DataIntegrityViolationException e) {
-        if (e.getCause() instanceof ConstraintViolationException) {
-            ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
-            if (ex.getConstraintName().contains("dni")) {
-                errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
-            } else if (ex.getConstraintName().contains("email")) {
-                errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
-            } else if (ex.getConstraintName().contains("username")) {
-                errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
-            }
+    public String guardaEmpleat(@Valid Empleat empleat, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            return "formularioEmpleado";
         }
-        return "formularioEmpleado";
+        try {
+            empleado.addEmpleat(empleat);
+            return "redirect:/empleats";
+        } catch (DataIntegrityViolationException e) {
+            if (e.getCause() instanceof ConstraintViolationException) {
+                ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
+                if (ex.getConstraintName().contains("dni")) {
+                    errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
+                } else if (ex.getConstraintName().contains("email")) {
+                    errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
+                } else if (ex.getConstraintName().contains("username")) {
+                    errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
+                }
+            }
+            return "formularioEmpleado";
+        }
     }
-}
-    
+
     @GetMapping("/elimina/empleat/{idUsuari}")
     public String eliminarEmpleats(Empleat empl) {
         this.empleado.eliminarEmpleat(empl);
         return "redirect:/empleats";
     }
-    
+
     //Clients:
     @GetMapping("/client/formulari")
     public String formularioCliente() {
         return "formularioCliente";
     }
 
-    
-
     @GetMapping("/partides")
     public String partides(Model model) {
         model.addAttribute("partides", partides.listarPartides());
         return "partides";
     }
-        
 
     @GetMapping("/configuracio")
     public String configuracio() {
@@ -208,15 +198,11 @@ public String guardaEmpleat(@Valid Empleat empleat, Errors errors, Model model) 
         return "redirect:/clients";
     }
 
-   
-
     @GetMapping("/elimina/client/{id}")
     public String eliminarClientes(Cliente client) {
         this.cliente.eliminarCliente(client);
         return "redirect:/clients";
     }
-
-    
 
     @GetMapping("/editar/client/{id}")
     public String editarCliente(Cliente client, Model model) {
@@ -227,28 +213,39 @@ public String guardaEmpleat(@Valid Empleat empleat, Errors errors, Model model) 
     }
 
     //Partides
-    
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
     }
-    
-       @GetMapping("/crear/partida/")
+
+    @GetMapping("/crear/partida/")
     public String crearPartida(Model model) {
         model.addAttribute("partida", new Partides());
         return "formularioCrearPartida";
     }
-    
+
     @PostMapping("/guardarPartida")
     public String guardarPartida(Partides partida) {
         partides.addPartida(partida);
         return "redirect:/partides";
     }
-    
+
     @GetMapping("/elimina/partida/{id}")
     public String eliminarPartida(Partides partida) {
         this.partides.eliminarPartida(partida);
         return "redirect:/partides";
+    }
+
+    @GetMapping("/client/afegir")
+    public String afegirClient(Model m) {
+        m.addAttribute("client", new Cliente());
+        return "formularioCrearCliente";
+    }
+
+    @PostMapping("/client/afegir")
+    public String afegirClient(Cliente client) {
+        cliente.addCliente(client);
+        return "redirect:/clients";
     }
 }
