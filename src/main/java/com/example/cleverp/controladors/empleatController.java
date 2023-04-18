@@ -98,6 +98,12 @@ public class empleatController {
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
     
+    @GetMapping("/empleat/nou")
+    public String crearEmpleat(Model model) {
+        model.addAttribute("empleat", new Empleat());
+        return "formularioCrearEmpleado";
+    }
+    
     @PostMapping("/empleats/guardar")
     public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
         System.out.println(errors);
@@ -172,6 +178,12 @@ public class empleatController {
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
+    }
+    
+       @GetMapping("/crear/partida/")
+    public String crearPartida(Model model) {
+        model.addAttribute("partida", new Partides());
+        return "formularioCrearPartida";
     }
     
     @PostMapping("/guardarPartida")

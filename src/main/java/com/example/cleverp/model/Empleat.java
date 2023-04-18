@@ -45,6 +45,12 @@ public class Empleat implements Serializable {
     @Pattern(regexp = "^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$", message = "El DNI debe tener 8 dígitos seguidos de una letra permitida: (TRWAGMYFPDXBNJZSQVHLCKE)")
     private String dni;
     
+    @Column(name="nom")
+    @NotEmpty(message = "El nombre no puede ser nulo ni vacío")
+    @Size(max = 45, message = "El nombre no puede tener más de 45 caracteres")
+    @Pattern(regexp = "[A-Za-z]+", message = "El nombre solo puede contener letras")
+    private String nom;
+    
 //    @Column(name="cognom1")
 //    private String cognom1;
     @Column(name="cognom1")
@@ -58,7 +64,7 @@ public class Empleat implements Serializable {
     @Column(name="cognom2")
     @Nullable
     @Size(max = 45, message = "El apellido no puede tener más de 45 caracteres")
-    @Pattern(regexp = "[A-Za-z]+", message = "El apellido solo puede contener letras")
+    @Pattern(regexp = "^[A-Za-z]*$|^$", message = "El apellido solo puede contener letras")
     private String cognom2;
     
 //    @Column(name="data_naixement")

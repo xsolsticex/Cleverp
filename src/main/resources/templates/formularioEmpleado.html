@@ -89,9 +89,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <input type="text" th:field="*{dni}" class="form-control"><br/>
                     <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div><br/>
                     
-                    <label>Nom</label><br/>
+                    <label>Username</label><br/>
                     <input type="text" th:field="*{username}" class="form-control"><br/>
                     <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+                    
+                    <label>Nom</label><br/>
+                    <input type="text" th:field="*{nom}" class="form-control"><br/>
+                    <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div><br/>
                     
                     <label>Cognom 1</label><br/>
                     <input type="text" th:field="*{cognom1}" class="form-control"/><br/>
