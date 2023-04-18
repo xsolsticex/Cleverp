@@ -28,11 +28,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link">Benvingut: </a>
+                                    <a class="nav-link">[[#{global.benvingut}]]</a>
                                 </li>
                                 <li class="nav-item">
                                     <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
-                                        <button type="submit" class="btn btn-outline-light" value="Logout">Tancar sessió</button>
+                                        <button type="submit" class="btn btn-outline-light" value="Logout">[[#{global.logout}]]</button>
                                     </form>
                                 </li>
                             </ul>
@@ -45,20 +45,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="sidebar">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">Clients</a>
+                    <a th:href="@{/clients}" class="nav-link text-white" aria-current="page">[[#{global.clients}]]</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('administrador')">
                     <a th:href="@{/empleats}" sec:authorize="hasAnyAuthority('administrador')"
-                       class="nav-link text-white">Empleats</a>
+                       class="nav-link text-white">[[#{global.empleats}]]</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/partides}" class="nav-link active mb-auto">Partides</a>
+                    <a th:href="@{/partides}" class="nav-link active mb-auto">[[#{global.partides}]]</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
+                    <a th:href="@{/configuracio}" class="nav-link text-white">[[#{global.configuracio}]]</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/}" class="nav-link text-white">Sortir</a>
+                    <a th:href="@{/}" class="nav-link text-white">[[#{global.sortir}]]</a>
 
                 </li>
             </ul>
@@ -68,32 +68,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <input type="text" th:field="*{id}" class="form-control" readonly style="display:none;"/><br/>
 
-            <label>Data de la partida</label><br/>
+            <label>[[#{partides.data}]]</label><br/>
             <input type="date" th:field="*{data_partida}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('data_partida')}" 
                  th:errors="*{data_partida}"></div>
 
-            <label>Aforament</label><br/>
+            <label>[[#{partides.participants}]]</label><br/>
             <input type="text" th:field="*{aforament}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('aforament')}" 
                  th:errors="*{aforament}"></div>
 
-            <label>Equip A</label><br/>
+            <label>[[#{partides.equip1}]]</label><br/>
             <input type="text" th:field="*{equipa_id}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('equipa_id')}" 
                  th:errors="*{equipa_id}"></div>
 
-            <label>Equip B</label><br/>
+            <label>[[#{partides.equip2}]]</label><br/>
             <input type="text" th:field="*{equipb_id}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('equipb_id')}" 
                  th:errors="*{equipb_id}"></div>
 
-            <label>Guanyador sorteig</label><br/>
+            <label>[[#{partides.guanyadorSorteig}]]</label><br/>
             <input type="text" th:field="*{guanyador_sorteig}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('guanyador_sorteig')}" 
                  th:errors="*{guanyador_sorteig}"></div>
 
-            <label>Producte sorteig</label><br/>
+            <label>[[#{partides.producteSortejat}]]</label><br/>
             <input type="text" th:field="*{producte_sorteig}" class="form-control"/><br/>
             <div th:if="${#fields.hasErrors('producte_sorteig')}" 
                  th:errors="*{producte_sorteig}"></div>
