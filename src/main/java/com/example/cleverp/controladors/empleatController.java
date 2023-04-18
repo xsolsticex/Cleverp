@@ -90,7 +90,7 @@ public class empleatController {
 
    
     @GetMapping("/empleat/formulari")
-    public String formularioEmpleat() {
+    public String formularioEmpleat( @AuthenticationPrincipal User username) {
         return "formularioEmpleado";
     }
     
@@ -125,7 +125,7 @@ public class empleatController {
 //    }
     
     @PostMapping("/empleats/guardarNou")
-public String guardaNouEmpleat(@Valid Empleat empleat, Errors errors, Model model) {
+public String guardaNouEmpleat(@Valid Empleat empleat, Errors errors, Model model,  @AuthenticationPrincipal User username) {
     if (errors.hasErrors()) {
         return "formularioCrearEmpleado";
     }
