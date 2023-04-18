@@ -20,6 +20,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 }
 
+  .my-jumbotron {
+    display: flex;
+    align-items: center;
+  }
+
 *{
     margin: 0;
     padding: 0;

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
 import jakarta.validation.Valid;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -75,12 +77,14 @@ public class empleatController {
     @PostMapping("/empleats")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
+         m.addAttribute("nomUsuari", username.getUsername());
         return "listadoEmpleados";
     }
     
     @GetMapping("/empleats")
     public String empleados(Model model, @AuthenticationPrincipal User username) {
         model.addAttribute("empleat", empleado.listarEmpleats());
+        model.addAttribute("nomUsuari", username.getUsername());
         return "listadoEmpleados";
     }
 
@@ -104,17 +108,63 @@ public class empleatController {
         return "formularioCrearEmpleado";
     }
     
-    @PostMapping("/empleats/guardar")
-    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
-        System.out.println(errors);
-        if (errors.hasErrors()){ //Si s'han produït errors...
-             return "formularioEmpleado"; //Mostrem la pàgina del formulari
-        }
-        
-        empleado.addEmpleat(empleat);
-        
-        return "redirect:/empleats";
+//    @PostMapping("/empleats/guardar")
+//    public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
+//        System.out.println(errors);
+//        if (errors.hasErrors()){ //Si s'han produït errors...
+//             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+//        }
+//        
+//        empleado.addEmpleat(empleat);
+//        
+//        return "redirect:/empleats";
+//    }
+    
+    @PostMapping("/empleats/guardarNou")
+public String guardaNouEmpleat(@Valid Empleat empleat, Errors errors, Model model) {
+    if (errors.hasErrors()) {
+        return "formularioCrearEmpleado";
     }
+    try {
+        empleado.addEmpleat(empleat);
+        return "redirect:/empleats";
+    } catch (DataIntegrityViolationException e) {
+        if (e.getCause() instanceof ConstraintViolationException) {
+            ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
+            if (ex.getConstraintName().contains("dni")) {
+                errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
+            } else if (ex.getConstraintName().contains("email")) {
+                errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
+            } else if (ex.getConstraintName().contains("username")) {
+                errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
+            }
+        }
+        return "formularioCrearEmpleado";
+    }
+}
+    
+    @PostMapping("/empleats/guardar")
+public String guardaEmpleat(@Valid Empleat empleat, Errors errors, Model model) {
+    if (errors.hasErrors()) {
+        return "formularioEmpleado";
+    }
+    try {
+        empleado.addEmpleat(empleat);
+        return "redirect:/empleats";
+    } catch (DataIntegrityViolationException e) {
+        if (e.getCause() instanceof ConstraintViolationException) {
+            ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
+            if (ex.getConstraintName().contains("dni")) {
+                errors.rejectValue("dni", "error.dni", "El DNI ya existe en la base de datos");
+            } else if (ex.getConstraintName().contains("email")) {
+                errors.rejectValue("email", "error.email", "El correo electrónico ya existe en la base de datos");
+            } else if (ex.getConstraintName().contains("username")) {
+                errors.rejectValue("username", "error.username", "El nombre de usuario ya existe en la base de datos");
+            }
+        }
+        return "formularioEmpleado";
+    }
+}
     
     @GetMapping("/elimina/empleat/{idUsuari}")
     public String eliminarEmpleats(Empleat empl) {
