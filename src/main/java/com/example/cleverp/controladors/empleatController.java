@@ -95,16 +95,20 @@ public class empleatController {
     }
     
      @GetMapping("/editar/empleat/{idUsuari}")
-    public String editarEmpleat(Empleat empl, Model model) {
+    public String editarEmpleat(Empleat empl, Model model, @AuthenticationPrincipal User username) {
 
         model.addAttribute("empleat", empleado.buscarEmpleat(empl));
-
+        model.addAttribute("nomUsuari", username.getUsername());
+        
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
     
     @GetMapping("/empleat/nou")
-    public String crearEmpleat(Model model) {
+    public String crearEmpleat(Model model, @AuthenticationPrincipal User username) {
+        
         model.addAttribute("empleat", new Empleat());
+        model.addAttribute("nomUsuari", username.getUsername());
+        
         return "formularioCrearEmpleado";
     }
     
