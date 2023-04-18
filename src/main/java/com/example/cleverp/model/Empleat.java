@@ -76,7 +76,7 @@ public class Empleat {
 //    private Date data_naixement;
     @Column(name = "data_naixement")
     @NotNull(message = "La fecha de nacimiento no puede ser nula")
-    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe de ser en formado AAA-MM-DD")
+    @Pattern(regexp = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", message = "La fecha debe estar en formato AAAA-MM-DD y ser válida.")
     private String data_naixement;
 
     @Column(name = "direccio")
