@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.cleverp.controladors;
-
 import com.example.cleverp.model.Cliente;
 import com.example.cleverp.model.Empleat;
 import com.example.cleverp.model.Partides;
@@ -15,10 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
-
 import jakarta.validation.Valid;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -39,23 +37,46 @@ public class empleatController {
         m.addAttribute("clientes", cliente.listarClientes());
         return "listadoClientes";
     }
-    
 
-    @PostMapping("/")
-    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
-        m.addAttribute("clientes", cliente.listarClientes());
-        m.addAttribute("user", user);
-        return "listadoClientes";
+    @GetMapping("/client/afegir")
+    public String afegirClient(Model m) {
+        m.addAttribute("client", new Cliente());
+        return "formularioCrearCliente";
     }
 
+    @GetMapping("/empleat/afegir")
+    public String afegirEmpleat(Model m) {
+        m.addAttribute("empleat", new Empleat());
+        return "formularioCrearEmpleado";
+    }
     
+    @PostMapping("/client/afegir")
+    public String afegirClient(Cliente client) {
+        cliente.addCliente(client);
+        return "redirect:/clients";
+    }
+
+    @PostMapping("/empleat/afegir")
+    public String afegirEmpleat(Empleat empleat) {
+        empleado.addEmpleat(empleat);
+        return "redirect:/empleats";
+    }
+    
+
+    @PostMapping("/login")
+    public String base2(@RequestAttribute("username") String user,Model m, @AuthenticationPrincipal User username) {
+        m.addAttribute("clientes", cliente.listarClientes());
+        m.addAttribute("usu", user);
+        return "listadoClientes";
+    }
+    
+
     @PostMapping("/listadoEmpleados")
     public String base2(Model m, @AuthenticationPrincipal User username) {
         m.addAttribute("empleat", empleado.listarEmpleats());
         return "listadoEmpleados";
     }
 
-   
     @GetMapping("/empleat/formulari")
     public String formularioEmpleat() {
         return "formularioEmpleado";
@@ -89,7 +110,6 @@ public class empleatController {
         model.addAttribute("partides", partides.listarPartides());
         return "partides";
     }
-        
 
     @GetMapping("/configuracio")
     public String configuracio() {
@@ -122,13 +142,13 @@ public class empleatController {
 
     @PostMapping("/empleats/guardar")
     public String guardaEmpleat(@Valid Empleat empleat, Errors errors) {
-        
-        if (errors.hasErrors()){ //Si s'han produït errors...
-             return "formularioEmpleado"; //Mostrem la pàgina del formulari
+
+        if (errors.hasErrors()) { //Si s'han produït errors...
+            return "formularioEmpleado"; //Mostrem la pàgina del formulari
         }
-        
+
         empleado.addEmpleat(empleat);
-        
+
         return "redirect:/listadoEmpleados";
     }
 
@@ -159,19 +179,19 @@ public class empleatController {
 
         return "formularioEmpleado"; //Retorna la pàgina amb el formulari de les dades del gos
     }
-    
+
     @GetMapping("/editar/partida/{id}")
     public String editarPartida(Partides partida, Model model) {
         model.addAttribute("partida", partides.buscarPartida(partida));
         return "formularioPartida";
     }
-    
+
     @PostMapping("/guardarPartida")
     public String guardarPartida(Partides partida) {
         partides.addPartida(partida);
         return "redirect:/partides";
     }
-    
+
     @GetMapping("/elimina/partida/{id}")
     public String eliminarPartida(Partides partida) {
         this.partides.eliminarPartida(partida);

@@ -27,7 +27,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item mr-3">
-                <a class="nav-link">Benvingut: </a>
+                  <a class="nav-link">Benvingut: <h3 th:text="${usu}"></h3></a>
               </li>
               <li class="nav-item">
                 <form class="form-signin" method="POST" th:action="@{/logout}" th:object="${empleat}">
@@ -56,14 +56,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       <li class="nav-item">
         <a th:href="@{/configuracio}" class="nav-link text-white">Configuració</a>
       </li>
-      <li class="nav-item">
-        <a th:href="@{/}" class="nav-link text-white">Sortir</a>
-
-      </li>
     </ul>
   </div>
   <div class="main-content">
-    <table class="table table-dark" border="2">
+    <div><a th:href="@{/empleat/afegir}" role="button" th:text="Afegir" class="btn btn-primary btn-lg"/></div>
+    <table class="table table-dark mt-2" border="2">
       <tr>
         <th>ID</th>
         <th>Nom</th>
