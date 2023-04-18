@@ -110,7 +110,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                     <label>Email</label><br/>
                     <input type="text" th:field="*{email}" class="form-control"/><br/>
-                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
+                    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br/>
 
                     <label>Direccio</label><br/>
                     <input type="text" th:field="*{direccio}" class="form-control"/><br/>
